@@ -51,10 +51,19 @@ a:hover { opacity: 1; text-decoration: underline; }
 
 .links {
   display: flex;
-  gap: 14px;
+  gap: 18px;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
+
+.links a { display: inline-flex; align-items: center; justify-content: center; }
+.links img.icon {
+  width: 28px;
+  height: 28px;
+  display: block;
+  opacity: .95;
+}
+.links img.icon:hover { opacity: 1; }
 
 .hero {
   display: grid;
