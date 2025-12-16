@@ -10,8 +10,8 @@
 
   <header class="wrap header">
     <div class="brand">
-      <h1>Portfolio</h1>
-      <p class="subtitle">Role / Discipline</p>
+      <h1>Justin DuPont</h1>
+      <p class="subtitle">Portfolio</p>
     </div>
 
     <nav class="links">
@@ -34,14 +34,33 @@
 
     <section class="hero">
       <div class="avatar"></div>
-      <p class="tagline">
-        Short one-line description of what you do or what this portfolio represents.
-      </p>
+      <h2 class="tagline">
+        Hi, I'm Justin!<br><br>
+        I'm a Producer, Unity Developer, and Creative Technologist
+      </h2>
     </section>
 
-    <section>
-      <h2>Selected Work</h2>
 
+
+    <section>
+      <h2 class="centered brands-heading-outside">Brands I've built for...</h2>
+      <div class="card brands">
+        <div class="brands-grid">
+
+        <div class="brand-item">
+          <img class="microsoft" src="assets/brands/microsoft.svg" alt="Microsoft" />
+        </div>
+        <div class="brand-item">
+          <img class="hp" src="assets/brands/hp-simple.svg" alt="HP" />
+        </div>
+        <div class="brand-item">
+          <img class="hyperx" src="assets/brands/hyperx-simple.svg.svg" alt="HyperX" />
+        </div>
+        </div>
+      </div>
+
+    <section>
+      <h2 class="centered">Experiences I have built</h2>
       <div class="projects-grid">
         <article class="card project">
           <div class="media">
@@ -137,13 +156,7 @@
 
     </section>
 
-    <section>
-      <h2>Background</h2>
-      <div class="card">
-        <h3>Institution / Organization</h3>
-        <p>General description of experience or focus.</p>
-      </div>
-    </section>
+    
 
     <section>
       <h2>Skills</h2>
@@ -164,7 +177,6 @@
         </p>
       </div>
     </section>
-
   </main>
 
   <footer class="wrap footer">
@@ -175,5 +187,17 @@
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
 
+  <script>
+    // Stagger fade-in for all .card elements in DOM order (top -> bottom)
+    (function(){
+      const cards = Array.from(document.querySelectorAll('.card'));
+      cards.forEach((el, i) => {
+        el.style.setProperty('--delay', `${i * 0.12}s`);
+      });
+    })();
+  </script>
+
 </body>
 </html>
+    
+

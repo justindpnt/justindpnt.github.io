@@ -5,7 +5,7 @@
   --muted: #aab4c3;
   --border: rgba(255,255,255,.08);
   --radius: 16px;
-  --max: 980px;
+  --max: 1100px;
 }
 
 * { box-sizing: border-box; }
@@ -66,11 +66,13 @@ a:hover { opacity: 1; text-decoration: underline; }
 .links img.icon:hover { opacity: 1; }
 
 .hero {
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 18px;
+  display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: center;
+  gap: 18px;
   margin: 18px 0 28px;
+  text-align: left;
 }
 
 .avatar {
@@ -85,6 +87,7 @@ a:hover { opacity: 1; text-decoration: underline; }
 .tagline {
   margin: 0;
   opacity: .92;
+  text-align: left;
 }
 
 h2 {
@@ -93,6 +96,43 @@ h2 {
   letter-spacing: .2px;
 }
 
+.centered {
+  text-align: center;
+}
+
+/* Brands section */
+.brands-grid {
+  display: flex;
+  gap: 0px;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 0 6px;
+  flex-wrap: wrap;
+}
+.brand-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  min-width: 180px;
+  min-height: 76px;
+  flex: 0 0 auto;
+}
+.brand-item img {
+  width: auto;
+  height: 45px; /* reduced ~20% from 56px */
+  display: block;
+  object-fit: contain;
+}
+
+/* Individual brand sizes (reduced by ~20%) */
+.brand-item img.microsoft { height: 36px; }
+.brand-item img.hp { height: 52px; }
+.brand-item img.hyperx { height: 61px; }
+
 .card {
   background: rgba(18, 20, 27, .7);
   border: 1px solid var(--border);
@@ -100,6 +140,11 @@ h2 {
   padding: 18px;
   box-shadow: 0 10px 30px rgba(0,0,0,.25);
   backdrop-filter: blur(10px);
+  opacity: 0;
+  transform: translateY(8px);
+  will-change: transform, opacity;
+  animation: fadeUp .6s ease forwards;
+  animation-delay: var(--delay, 0s);
 }
 
 .project {
@@ -139,6 +184,23 @@ h2 {
 
 @media (max-width: 600px) {
   .projects-grid { grid-template-columns: 1fr; }
+  /* Keep brand logo heights fixed so they don't resize on small screens */
+  .brand-item { min-width: 160px; }
+}
+
+/* Brands heading outside card */
+.brands-heading-outside {
+  font-size: 22px; /* increased by ~4px */
+  margin: 14px 0 8px;
+}
+
+/* Reduce vertical spacing inside the brands card */
+.card.brands {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin: 2px auto;
+  max-width: 700px;
+  width: 100%;
 }
 
 .mediaPlaceholder {
@@ -200,6 +262,12 @@ h2 {
 
 @media (max-width: 820px) {
   .project { grid-template-columns: 1fr; }
-  .hero { grid-template-columns: 80px 1fr; }
+  .hero { flex-direction: column; text-align: center; align-items: center; gap: 12px; }
+  .hero .tagline { text-align: center; }
   .avatar { width: 80px; height: 80px; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
