@@ -27,7 +27,8 @@ a:hover { opacity: 1; text-decoration: underline; }
 .wrap {
   max-width: var(--max);
   margin: 0 auto;
-  padding: 28px 20px;
+  /* reduced top/bottom padding to bring header closer to the viewport */
+  padding: 16px 20px 0px;
 }
 
 .header {
@@ -35,7 +36,8 @@ a:hover { opacity: 1; text-decoration: underline; }
   gap: 18px;
   align-items: center;
   justify-content: space-between;
-  padding-top: 36px;
+  /* smaller top padding to reduce vertical gap */
+  padding-top: 8px;
 }
 
 .brand h1 {
@@ -157,8 +159,8 @@ a:hover { opacity: 1; text-decoration: underline; }
 .project {
   display: grid;
   grid-template-columns: 260px 1fr;
-  gap: 16px;
-  margin: 12px 0;
+  gap: 100px;
+  margin: 0px 0;
   overflow: hidden;
 }
 
@@ -201,13 +203,24 @@ a:hover { opacity: 1; text-decoration: underline; }
   margin: 14px 0 8px;
 }
 
+/* Replacement for previous .centered: center headings/content */
+.taglines {
+  font-size: 22px;
+  text-align: center;
+}
+
 /* Reduce vertical spacing inside the brands card */
 .card.brands {
-  padding-top: 2px;
+  /* keep a consistent gap from viewport edges on narrow screens */
+  --edge-gap: 80px; /* change this value to increase/decrease the side gap */
+  padding-top: 0px;
   padding-bottom: 2px;
   margin: 2px auto;
+  box-sizing: border-box;
+  /* on small viewports this leaves `--edge-gap` on each side; on larger
+     viewports the width caps at `max-width` */
+  width: calc(100% - (var(--edge-gap) * 2));
   max-width: 700px;
-  width: 100%;
 }
 
 .mediaPlaceholder {

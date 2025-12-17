@@ -10,8 +10,8 @@
 
   <header class="wrap header">
     <div class="brand">
-      <h1>Justin DuPont</h1>
-      <p class="subtitle">Portfolio</p>
+      <h1 id="brand-name">Justin DuPont</h1>
+      <p class="subtitle" id="brand-subtitle">Portfolio</p>
     </div>
 
     <nav class="links">
@@ -35,13 +35,13 @@
     <section class="Profile-info">
       <img class="avatar" src="assets/avatar-placeholder.svg" alt="Profile picture" width="110" height="110">
       <div class="tagline">
-        <h1 class="hero-name">Hi, I'm Justin!</h1>
-        <p class="hero-sub">Program Manager<br>Unity Developer<br>Creative Technologist</p>
+        <h1 class="hero-name" id="hero-name">Hi, I'm Justin!</h1>
+        <p class="hero-sub" id="hero-sub">Program Manager<br>Unity Developer<br>Creative Technologist</p>
       </div>
     </section>
 
     <section>
-      <h2 class="centered brands-heading-outside">Previously employed by...</h2>
+      <h2 id="brands-heading" class="taglines">Previously employed by...</h2>
       <div class="card brands">
         <div class="brands-grid">
 
@@ -58,7 +58,7 @@
       </div>
 
     <section>
-      <h2 class="centered">Experiences I have built</h2>
+      <h2 id="experiences-heading" class="taglines">Experiences I have built</h2>
       <div class="projects-grid">
         <article class="card project">
           <div class="media">
@@ -157,8 +157,8 @@
     
 
     <section>
-      <h2>Skills</h2>
-      <ul class="skills">
+      <h2 id="skills-heading">Skills</h2>
+      <ul id="skills-list" class="skills">
         <li>Skill</li>
         <li>Skill</li>
         <li>Skill</li>
@@ -168,9 +168,9 @@
     </section>
 
     <section>
-      <h2>About</h2>
+      <h2 id="about-heading">About</h2>
       <div class="card">
-        <p>
+        <p id="about-text">
           Short neutral bio. Who this portfolio is for and what kind of work it showcases.
         </p>
       </div>
@@ -184,6 +184,8 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
+
+  <script src="js/content.js"></script>
 
   <script>
     // Stagger fade-in for all .card elements in DOM order (top -> bottom)
