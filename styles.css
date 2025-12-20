@@ -6,6 +6,7 @@
   --border: rgba(255,255,255,.08);
   --radius: 16px;
   --max: 1100px;
+  --profile-edge-gap: 24px;
 }
 
 * { box-sizing: border-box; }
@@ -104,19 +105,27 @@ a:hover { opacity: 1; text-decoration: underline; }
 }
 
 /* Center the profile block and keep avatar + text side-by-side */
+/* Profile block: use a two-column layout with the avatar filling the left column */
 .Profile-info{
-  display: flex;
-  align-items: center;
-  justify-content: center; /* center the group in the page */
+  display: grid;
+  /* left column: exactly half the viewport width; right column fills remaining space */
+  grid-template-columns: 50vw 1fr;
   gap: 20px;
-  max-width: 760px;
-  margin: 0 auto 28px;
+  align-items: center;
+  /* make this section span the full viewport so the left column can be 50vw */
+  width: 100vw;
+  max-width: none;
+  /* shift the full-width container inward so the left column (GIF) has a buffer */
+  margin-left: calc(50% - 50vw + var(--profile-edge-gap));
+  margin-right: calc(50% - 50vw + var(--profile-edge-gap));
+  margin-bottom: 28px;
 }
 
 .tagline {
   display: flex;
   flex-direction: column;
-  text-align: left;
+  justify-content: center;
+  text-align: center;
 }
 
 .tagline h1 {
@@ -127,18 +136,47 @@ a:hover { opacity: 1; text-decoration: underline; }
   margin: 0;
 }
 
+/* Slightly larger subtitle under the hero name */
+.hero-sub {
+  font-size: 18px;
+  margin-top: 30px;
+}
+
 .avatar {
+  width: 100%;
+  height: auto; /* preserve original aspect ratio */
+  min-height: 0;
+  max-height: 80vh; /* prevent it from being excessively tall */
+  display: block;
+  object-fit: contain;
+  border-radius: 16px; /* rounded corners */
+}
+
+/* Small circular hero/profile picture (explicit size) */
+.hero-profile {
   width: 150px;
   height: 150px;
+  display: block;
   object-fit: cover;
-  flex: 0 0 auto;
+  border-radius: 50%;
+  margin: 0 auto;
+  justify-self: center; /* center in grid column */
+  align-self: center;   /* center vertically in the grid row */
 }
 
 @media (max-width: 520px) {
   .Profile-info, .profile-info {
+    display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
+    gap: 12px;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
   }
+
+  .avatar { width: 180px; height: 180px; min-height: 0; border-radius: 50%; }
 }
 
 /* Brands section */

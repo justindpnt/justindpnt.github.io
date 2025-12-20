@@ -6,7 +6,7 @@
     },
     hero: {
       name: "Hi, I'm Justin!",
-      subtitleLines: ["Program Manager","Unity Developer","Creative Technologist"]
+      subtitleLines: ["Program Manager / Software Engineer"]
     },
     brandsHeading: "Previously employed by...",
     experiencesHeading: "Experiences I have built",
@@ -26,15 +26,21 @@
 
   function populate() {
     const c = window.siteContent;
-    document.getElementById('brand-name')?.textContent = c.header.name;
-    document.getElementById('brand-subtitle')?.textContent = c.header.subtitle;
-    document.getElementById('hero-name')?.textContent = c.hero.name;
+    try {
+      const brandNameEl = document.getElementById('brand-name');
+      if (brandNameEl) brandNameEl.textContent = c.header.name;
+      const brandSubtitleEl = document.getElementById('brand-subtitle');
+      if (brandSubtitleEl) brandSubtitleEl.textContent = c.header.subtitle;
+      const heroNameEl = document.getElementById('hero-name');
+      if (heroNameEl) heroNameEl.textContent = c.hero.name;
 
-    const heroSub = document.getElementById('hero-sub');
-    if (heroSub) heroSub.innerHTML = c.hero.subtitleLines.join('<br>');
+      const heroSub = document.getElementById('hero-sub');
+      if (heroSub) heroSub.innerHTML = c.hero.subtitleLines.join('<br>');
 
-    document.getElementById('brands-heading')?.textContent = c.brandsHeading;
-    document.getElementById('experiences-heading')?.textContent = c.experiencesHeading;
+      const brandsHeadingEl = document.getElementById('brands-heading');
+      if (brandsHeadingEl) brandsHeadingEl.textContent = c.brandsHeading;
+      const experiencesHeadingEl = document.getElementById('experiences-heading');
+      if (experiencesHeadingEl) experiencesHeadingEl.textContent = c.experiencesHeading;
 
     const projectEls = document.querySelectorAll('.projects-grid .project');
     projectEls.forEach((el, i) => {
@@ -51,9 +57,33 @@
     const skillsList = document.getElementById('skills-list');
     if (skillsList) skillsList.innerHTML = c.skills.map(s => `<li>${s}</li>`).join('');
 
-    document.getElementById('about-heading')?.textContent = c.aboutHeading;
-    document.getElementById('about-text')?.textContent = c.aboutText;
+    const aboutHeadingEl = document.getElementById('about-heading');
+    if (aboutHeadingEl) aboutHeadingEl.textContent = c.aboutHeading;
+    const aboutTextEl = document.getElementById('about-text');
+    if (aboutTextEl) aboutTextEl.textContent = c.aboutText;
+    } catch (err) {
+      console.error('content.js: populate failed', err);
+    }
+  }
+  // expose for manual debugging
+  window.populateSiteContent = populate;
+
+  // Ensure populate runs on DOMContentLoaded or immediately if already parsed
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('content.js: DOMContentLoaded — populating');
+      populate();
+    });
+  } else {
+    console.log('content.js: document.readyState != loading — populating now');
+    populate();
   }
 
-  document.addEventListener('DOMContentLoaded', populate);
+  // Also attach to load as a fallback in case other scripts interfere
+  window.addEventListener('load', () => {
+    console.log('content.js: window.load — populating (fallback)');
+    try { populate(); } catch (e) { console.error(e); }
+  });
+
+  console.log('content.js: handlers attached, populate exposed as window.populateSiteContent');
 })();

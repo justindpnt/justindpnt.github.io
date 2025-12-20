@@ -27,16 +27,17 @@
       <a href="https://github.com/justindpnt" target="_blank" rel="noreferrer" aria-label="GitHub">
         <img class="icon" src="assets/icons/github.svg" alt="GitHub">
       </a>
-      <!-- Resume download button -->
-      <a class="resume-btn" href="assets/resume.pdf" download target="_blank" rel="noopener noreferrer">Resume</a>
+      <!-- Resume button: opens PDF in a new tab -->
+      <a class="resume-btn" href="assets/resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
     </nav>
   </header>
 
   <main class="wrap">
 
     <section class="Profile-info">
-      <img class="avatar" src="assets/avatar-placeholder.svg" alt="Profile picture" width="110" height="110">
+      <img class="avatar" src="assets/avatar-photo.gif" alt="Profile picture">
       <div class="tagline">
+        <img class="hero-profile" src="assets/profile.JPEG" alt="Profile picture">
         <h1 class="hero-name" id="hero-name">Hi, I'm Justin!</h1>
         <p class="hero-sub" id="hero-sub">Program Manager<br>Unity Developer<br>Creative Technologist</p>
       </div>
@@ -187,7 +188,7 @@
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
 
-  <script src="js/content.js"></script>
+  <script src="./js/content.js"></script>
 
   <script>
     // Stagger fade-in for all .card elements in DOM order (top -> bottom)
@@ -197,6 +198,21 @@
         el.style.setProperty('--delay', `${i * 0.12}s`);
       });
     })();
+  </script>
+
+  <!-- Bootstrap: ensure content.js data is applied and provide debug logs -->
+  <script>
+    try {
+      console.log('bootstrap: siteContent present?', !!window.siteContent);
+      if (typeof window.populateSiteContent === 'function') {
+        window.populateSiteContent();
+        console.log('bootstrap: populateSiteContent() called');
+      } else {
+        console.warn('bootstrap: populateSiteContent not found — content.js may not have loaded');
+      }
+    } catch (err) {
+      console.error('bootstrap: error while applying siteContent', err);
+    }
   </script>
 
 </body>
