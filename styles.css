@@ -67,6 +67,38 @@ a:hover { opacity: 1; text-decoration: underline; }
 }
 .links img.icon:hover { opacity: 1; }
 
+/* Resume button sits inline with the social icons */
+.links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.03);
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .15s ease, transform .08s ease;
+}
+.resume-btn:hover {
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+@media (max-width: 560px) {
+  .resume-btn { padding: 6px 10px; font-size: 14px; }
+}
+
 .profile-info {
   align-items: center;
 }
