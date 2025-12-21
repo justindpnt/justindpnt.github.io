@@ -55,11 +55,11 @@ a:hover { opacity: 1; text-decoration: underline; }
 /* Header brand layout: avatar left of text */
 .brand {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
 }
 
-.brand .brand-text { display: flex; flex-direction: column; justify-content: flex-start; }
+.brand .brand-text { display: flex; flex-direction: column; justify-content: center; }
 
 .header-avatar {
   width: 68px;
@@ -74,7 +74,7 @@ a:hover { opacity: 1; text-decoration: underline; }
 .subtitle {
   margin: 0px 0 0;
   color: var(--muted);
-  font-size: px;
+  font-size: 13px;
   line-height: 1.15;
 }
 
