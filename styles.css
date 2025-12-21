@@ -51,13 +51,15 @@ main.wrap { margin-top: var(--content-top-gap); }
 
 .brand h1 {
   margin: 0;
-  font-size: 32px;
+  /* Fluid: min 20px, scales with viewport, max 32px */
+  font-size: clamp(20px, 3.2vw, px);
   letter-spacing: .2px;
 }
 
 .brand p {
   margin: 0;
-  font-size: 20px;
+  /* Fluid subtitle: min 14px, max 20px */
+  font-size: clamp(14px, 1.8vw, 24px);
 }
 
 /* Header brand layout: avatar left of text */
@@ -91,7 +93,8 @@ main.wrap { margin-top: var(--content-top-gap); }
 .subtitle {
   margin: 0px 0 0;
   color: var(--muted);
-  font-size: 13px;
+  /* Small caption: min 12px, max 13px */
+  font-size: clamp(12px, 1.2vw, 24px);
   line-height: 1.15;
 }
 
@@ -135,7 +138,8 @@ main.wrap { margin-top: var(--content-top-gap); }
   color: var(--text);
   border: 1px solid rgba(255,255,255,0.12);
   font-weight: 700;
-  font-size: 18px;
+  /* Button text fluid: min 14px, max 18px */
+  font-size: clamp(14px, 1.8vw, 18px);
   text-decoration: none;
   transition: background .15s ease, transform .08s ease, box-shadow .15s ease, border-color .15s ease;
   /* match card/backdrop styling used for tiles */
@@ -191,7 +195,8 @@ main.wrap { margin-top: var(--content-top-gap); }
 
 /* Slightly larger subtitle under the hero name */
 .hero-sub {
-  font-size: 36px;
+  /* Fluid scaling: min 18px, scales with viewport, max 36px */
+  font-size: clamp(18px, 3.8vw, 36px);
   margin-top: 18px;
 
   text-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.02);
@@ -213,7 +218,7 @@ main.wrap { margin-top: var(--content-top-gap); }
   overflow: hidden;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 522px) {
   .Profile-info, .profile-info {
     display: flex;
     flex-direction: column;
@@ -225,12 +230,17 @@ main.wrap { margin-top: var(--content-top-gap); }
     margin-right: auto;
   }
 
-  .showreel-gif { width: 180px; height: 180px; min-height: 0; border-radius: 50%; }
+  .showreel-gif {
+    width: 180px;
+    height: auto; /* preserve aspect ratio */
+    min-height: 0;
+    border-radius: 16px; /* rounded rectangle, not circle */
+    aspect-ratio: 16/9;
+  }
 }
 
 @media (max-width: 560px) {
   .header-avatar { width: 40px; height: 40px; }
-  .brand h1 { font-size: 20px; }
 }
 
 /* Brands section */
@@ -329,7 +339,8 @@ main.wrap { margin-top: var(--content-top-gap); }
 
 /* Replacement for previous .centered: center headings/content */
 .taglines {
-  font-size: 22px;
+  /* Section heading: fluid between 16px and 22px */
+  font-size: clamp(16px, 2.6vw, 22px);
   text-align: center;
 }
 
@@ -364,7 +375,8 @@ main.wrap { margin-top: var(--content-top-gap); }
 }
 
 .chip {
-  font-size: 12px;
+  /* Chip text: min 11px, max 12px */
+  font-size: clamp(11px, 1.4vw, 12px);
   padding: 6px 10px;
   border-radius: 999px;
   border: 1px solid var(--border);
@@ -374,7 +386,7 @@ main.wrap { margin-top: var(--content-top-gap); }
 
 .project h3 {
   margin: 6px 0;
-  font-size: 16px;
+  font-size: clamp(14px, 2.4vw, 16px);
 }
 
 .project p {
@@ -396,7 +408,7 @@ main.wrap { margin-top: var(--content-top-gap); }
   border-radius: 999px;
   border: 1px solid var(--border);
   background: rgba(0,0,0,.18);
-  font-size: 13px;
+  font-size: clamp(12px, 1.6vw, 13px);
 }
 
 .footer {
