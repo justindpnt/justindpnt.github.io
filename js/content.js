@@ -5,8 +5,8 @@
       subtitle: "Program Manager / Software Engineer"
     },
     hero: {
-      name: "Hi, I'm Justin!",
-      subtitle: "I like building things that haven't been made before."
+
+      subtitle: "I build and share things that haven't been made before."
     },
     brandsHeading: "Previously employed by...",
     experiencesHeading: "Experiences I have built",
