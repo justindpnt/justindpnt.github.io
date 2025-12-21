@@ -2,11 +2,11 @@
   window.siteContent = {
     header: {
       name: "Justin DuPont",
-      subtitle: "Portfolio"
+      subtitle: "Program Manager / Software Engineer"
     },
     hero: {
       name: "Hi, I'm Justin!",
-      subtitleLines: ["Program Manager / Software Engineer"]
+      subtitle: "I like building things that haven't been made before."
     },
     brandsHeading: "Previously employed by...",
     experiencesHeading: "Experiences I have built",
@@ -35,7 +35,13 @@
       if (heroNameEl) heroNameEl.textContent = c.hero.name;
 
       const heroSub = document.getElementById('hero-sub');
-      if (heroSub) heroSub.innerHTML = c.hero.subtitleLines.join('<br>');
+      if (heroSub) {
+        if (typeof c.hero.subtitle === 'string') {
+          heroSub.textContent = c.hero.subtitle;
+        } else if (Array.isArray(c.hero.subtitleLines)) {
+          heroSub.innerHTML = c.hero.subtitleLines.join('<br>');
+        }
+      }
 
       const brandsHeadingEl = document.getElementById('brands-heading');
       if (brandsHeadingEl) brandsHeadingEl.textContent = c.brandsHeading;
