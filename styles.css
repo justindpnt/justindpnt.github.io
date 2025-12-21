@@ -37,9 +37,7 @@ a:hover { opacity: 1; text-decoration: underline; }
   padding: 12px 20px 0px;
 }
 
-/* Apply adjustable spacing between header and the rest of the page content.
-   This targets the top-level `main.wrap` so the gap is part of the page content,
-   not the header itself. */
+/* Page content spacing */
 main.wrap { margin-top: var(--content-top-gap); }
 
 .header {
@@ -52,14 +50,16 @@ main.wrap { margin-top: var(--content-top-gap); }
 .brand h1 {
   margin: 0;
   /* Fluid: min 20px, scales with viewport, max 32px */
-  font-size: clamp(20px, 3.2vw, px);
+  font-size: clamp(20px, 3.2vw, 32px);
   letter-spacing: .2px;
+  line-height: 1.1;
 }
 
-.brand p {
+/* Brand subtitle (Program Manager) */
+#brand-subtitle {
   margin: 0;
-  /* Fluid subtitle: min 14px, max 20px */
-  font-size: clamp(14px, 1.8vw, 24px);
+  font-size: clamp(14px, 1.8vw, 20px);
+  color: var(--muted);
 }
 
 /* Header brand layout: avatar left of text */
@@ -70,15 +70,6 @@ main.wrap { margin-top: var(--content-top-gap); }
 }
 
 .brand .brand-text { display: flex; flex-direction: column; justify-content: center; }
-
-/* Tweak typography so the name + subtitle visually center with the avatar */
-.brand h1 {
-  line-height: 1.1;
-}
-.brand-text {
-  justify-content: center;
-}
-
 
 .header-avatar {
   width: 90px;
@@ -93,21 +84,21 @@ main.wrap { margin-top: var(--content-top-gap); }
 .subtitle {
   margin: 0px 0 0;
   color: var(--muted);
-  /* Small caption: min 12px, max 13px */
-  font-size: clamp(12px, 1.2vw, 24px);
+  font-size: clamp(12px, 1.2vw, 13px);
   line-height: 1.15;
 }
 
 .header {
-  /* ensure header has enough height to comfortably contain avatar + two-line text */
   min-height: 80px;
 }
 
+/* Social links */
 .links {
   display: flex;
-  gap: 18px;
+  gap: 14px;
   flex-wrap: wrap;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .links a { display: inline-flex; align-items: center; justify-content: center; }
@@ -118,15 +109,6 @@ main.wrap { margin-top: var(--content-top-gap); }
   opacity: .95;
 }
 .links img.icon:hover { opacity: 1; }
-
-/* Resume button sits inline with the social icons */
-.links {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  align-items: center;
-}
 
 .resume-btn {
   display: inline-flex;
@@ -158,24 +140,13 @@ main.wrap { margin-top: var(--content-top-gap); }
   .resume-btn { padding: 10px 14px; font-size: 15px; }
 }
 
-.profile-info {
-  align-items: center;
-}
-
-/* Center the profile block and keep avatar + text side-by-side */
-/* Profile block: use a two-column layout with balanced columns */
-.Profile-info{
+/* Showreel section: two-column layout (video + text) */
+.showreel {
   display: grid;
-  /* Give the showreel a bit more real estate but keep it consistent:
-    left column (showreel) up to 60% of the container, right column (text)
-    up to 40%. Minimum widths prevent collapsing on narrower but still-wide
-    viewports. This keeps proportions stable across large screens. */
   grid-template-columns: minmax(300px, 60%) minmax(240px, 40%);
   gap: 20px;
   align-items: center;
-  /* keep section contained inside the normal flow to avoid horizontal scroll */
   width: 100%;
-  max-width: 100%;
   margin: 0 0 28px 0;
 }
 
@@ -193,12 +164,10 @@ main.wrap { margin-top: var(--content-top-gap); }
   margin: 0;
 }
 
-/* Slightly larger subtitle under the hero name */
-.hero-sub {
-  /* Fluid scaling: min 18px, scales with viewport, max 36px */
+/* Showreel text (subtitle) */
+.showreel-text {
   font-size: clamp(18px, 3.8vw, 36px);
   margin-top: 18px;
-
   text-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.02);
 }
 
@@ -219,7 +188,7 @@ main.wrap { margin-top: var(--content-top-gap); }
 }
 
 @media (max-width: 522px) {
-  .Profile-info, .profile-info {
+  .showreel {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -229,18 +198,6 @@ main.wrap { margin-top: var(--content-top-gap); }
     margin-left: auto;
     margin-right: auto;
   }
-
-  .showreel-gif {
-    width: 180px;
-    height: auto; /* preserve aspect ratio */
-    min-height: 0;
-    border-radius: 16px; /* rounded rectangle, not circle */
-    aspect-ratio: 16/9;
-  }
-}
-
-@media (max-width: 560px) {
-  .header-avatar { width: 40px; height: 40px; }
 }
 
 /* Brands section */
@@ -331,11 +288,7 @@ main.wrap { margin-top: var(--content-top-gap); }
   .brand-item { min-width: 160px; }
 }
 
-/* Brands heading outside card */
-.brands-heading-outside {
-  font-size: 22px; /* increased by ~4px */
-  margin: 14px 0 8px;
-}
+
 
 /* Replacement for previous .centered: center headings/content */
 .taglines {
@@ -356,6 +309,11 @@ main.wrap { margin-top: var(--content-top-gap); }
      viewports the width caps at `max-width` */
   width: calc(100% - (var(--edge-gap) * 2));
   max-width: 700px;
+  /* Don't shrink below a usable size */
+  min-width: 260px;
+  min-height: 88px;
+  /* Allow horizontal scrolling if viewport is narrower than min-width */
+  overflow-x: auto;
 }
 
 .mediaPlaceholder {

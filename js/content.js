@@ -4,10 +4,10 @@
       name: "Justin DuPont",
       subtitle: "Program Manager / Software Engineer"
     },
-    hero: {
-
-      subtitle: "I build and share things that haven't been made before."
+    showreel: {
+      text: "I like building and sharing things that have not been made before."
     },
+
     brandsHeading: "Previously employed by...",
     experiencesHeading: "Experiences I have built",
     projects: [
@@ -31,17 +31,9 @@
       if (brandNameEl) brandNameEl.textContent = c.header.name;
       const brandSubtitleEl = document.getElementById('brand-subtitle');
       if (brandSubtitleEl) brandSubtitleEl.textContent = c.header.subtitle;
-      const heroNameEl = document.getElementById('hero-name');
-      if (heroNameEl) heroNameEl.textContent = c.hero.name;
 
-      const heroSub = document.getElementById('hero-sub');
-      if (heroSub) {
-        if (typeof c.hero.subtitle === 'string') {
-          heroSub.textContent = c.hero.subtitle;
-        } else if (Array.isArray(c.hero.subtitleLines)) {
-          heroSub.innerHTML = c.hero.subtitleLines.join('<br>');
-        }
-      }
+      const showreelTextEl = document.getElementById('showreel-text');
+      if (showreelTextEl) showreelTextEl.textContent = String(c.showreel.text || '');
 
       const brandsHeadingEl = document.getElementById('brands-heading');
       if (brandsHeadingEl) brandsHeadingEl.textContent = c.brandsHeading;
@@ -71,25 +63,13 @@
       console.error('content.js: populate failed', err);
     }
   }
-  // expose for manual debugging
+  // expose for manual use
   window.populateSiteContent = populate;
 
-  // Ensure populate runs on DOMContentLoaded or immediately if already parsed
+  // populate once DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('content.js: DOMContentLoaded — populating');
-      populate();
-    });
+    document.addEventListener('DOMContentLoaded', populate);
   } else {
-    console.log('content.js: document.readyState != loading — populating now');
     populate();
   }
-
-  // Also attach to load as a fallback in case other scripts interfere
-  window.addEventListener('load', () => {
-    console.log('content.js: window.load — populating (fallback)');
-    try { populate(); } catch (e) { console.error(e); }
-  });
-
-  console.log('content.js: handlers attached, populate exposed as window.populateSiteContent');
 })();
