@@ -5,8 +5,9 @@
   --muted: #aab4c3;
   --border: rgba(255,255,255,.08);
   --radius: 16px;
-  --max: 1100px;
+  --max: 1300px;
   --profile-edge-gap: 24px;
+  --content-top-gap: 28px; /* space between header and page content; adjust this */
 }
 
 * { box-sizing: border-box; }
@@ -29,27 +30,30 @@ a:hover { opacity: 1; text-decoration: underline; }
   max-width: var(--max);
   margin: 0 auto;
   /* reduced top/bottom padding to bring header closer to the viewport */
-  padding: 16px 20px 0px;
+  padding: 12px 20px 0px;
 }
+
+/* Apply adjustable spacing between header and the rest of the page content.
+   This targets the top-level `main.wrap` so the gap is part of the page content,
+   not the header itself. */
+main.wrap { margin-top: var(--content-top-gap); }
 
 .header {
   display: flex;
   gap: 18px;
   align-items: center;
   justify-content: space-between;
-  /* smaller top padding to reduce vertical gap */
-  padding-top: 8px;
 }
 
 .brand h1 {
   margin: 0;
-  font-size: 28px;
+  font-size: 32px;
   letter-spacing: .2px;
 }
 
 .brand p {
   margin: 0;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 /* Header brand layout: avatar left of text */
@@ -61,9 +65,18 @@ a:hover { opacity: 1; text-decoration: underline; }
 
 .brand .brand-text { display: flex; flex-direction: column; justify-content: center; }
 
+/* Tweak typography so the name + subtitle visually center with the avatar */
+.brand h1 {
+  line-height: 1.1;
+}
+.brand-text {
+  justify-content: center;
+}
+
+
 .header-avatar {
-  width: 68px;
-  height: 68px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
@@ -92,8 +105,8 @@ a:hover { opacity: 1; text-decoration: underline; }
 
 .links a { display: inline-flex; align-items: center; justify-content: center; }
 .links img.icon {
-  width: 28px;
-  height: 28px;
+  width: 35px;
+  height: 35px;
   display: block;
   opacity: .95;
 }
@@ -111,13 +124,14 @@ a:hover { opacity: 1; text-decoration: underline; }
 .resume-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
+  gap: 10px;
+  padding: 12px 18px;
   border-radius: 999px;
   background: rgba(255,255,255,0.03);
   color: var(--text);
   border: 1px solid rgba(255,255,255,0.12);
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 18px;
   text-decoration: none;
   transition: background .15s ease, transform .08s ease, box-shadow .15s ease, border-color .15s ease;
   /* match card/backdrop styling used for tiles */
@@ -133,7 +147,7 @@ a:hover { opacity: 1; text-decoration: underline; }
 }
 
 @media (max-width: 560px) {
-  .resume-btn { padding: 6px 10px; font-size: 14px; }
+  .resume-btn { padding: 10px 14px; font-size: 15px; }
 }
 
 .profile-info {
