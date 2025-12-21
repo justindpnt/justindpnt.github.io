@@ -199,6 +199,7 @@ main.wrap { margin-top: var(--content-top-gap); }
 
 .showreel-gif {
   width: 100%;
+  aspect-ratio: 16/9;
   height: auto; /* preserve original aspect ratio */
   min-height: 0;
   max-height: 80vh; /* prevent it from being excessively tall */
