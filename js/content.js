@@ -9,11 +9,11 @@
     },
 
     brandsHeading: "Previously employed by...",
-    experiencesHeading: "Experiences I have built",
+    experiencesHeading: "Shipped Work",
     projects: [
-      { title: "Project Title 1", description: "Brief neutral description of the work or outcome.", chips: ["Category","Tools / Stack"] },
-      { title: "Project Title 2", description: "Brief neutral description of the work or outcome.", chips: ["Category","Tools / Stack"] },
-      { title: "Project Title 3", description: "Brief neutral description of the work or outcome.", chips: ["Category","Tools / Stack"] },
+      { title: "Augmented Reality Pokemon Cards", description: "Brief neutral description of the work or outcome.", chips: ["Unity","C#", "AR Foundation"] },
+      { title: "Break Room", description: "Brief neutral description of the work or outcome.", chips: ["Unity", "C#", "Meta SDKs",  "Meta Quest Store"] },
+      { title: "Familiars", description: "Brief neutral description of the work or outcome.", chips: ["Unity","C#", "AR Foundation"] },
       { title: "Project Title 4", description: "Brief neutral description of the work or outcome.", chips: ["Category","Tools / Stack"] },
       { title: "Project Title 5", description: "Brief neutral description of the work or outcome.", chips: ["Category","Tools / Stack"] },
       { title: "Project Title 6", description: "Brief neutral description of the work or outcome.", chips: ["Category","Tools / Stack"] }
