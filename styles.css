@@ -312,8 +312,17 @@ main.wrap { margin-top: var(--content-top-gap); }
   /* Don't shrink below a usable size */
   min-width: 260px;
   min-height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   /* Allow horizontal scrolling if viewport is narrower than min-width */
   overflow-x: auto;
+}
+
+/* Ensure the inner grid spans the card so its own centering takes effect */
+.card.brands .brands-grid {
+  width: 100%;
+  justify-content: center;
 }
 
 .mediaPlaceholder {
