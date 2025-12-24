@@ -13,7 +13,7 @@
       <img class="header-avatar" src="assets/profile.JPEG" alt="Profile picture">
       <div class="brand-text">
         <h1 id="brand-name">Justin DuPont</h1>
-        <p class="subtitle" id="brand-subtitle">Program Manager</p>
+        <p class="subtitle" id="brand-subtitle">Program Manager / Software Engineer</p>
       </div>
     </div>
 
@@ -42,7 +42,7 @@
         Your browser does not support the video tag.
       </video>
       <div class="tagline">
-        <p class="showreel-text" id="showreel-text"></p>
+        <p class="showreel-text" id="showreel-text">I like building and sharing things that have not been made before.</p>
       </div>
     </section>
 
@@ -64,7 +64,7 @@
       </div>
 
     <section>
-      <h2 id="experiences-heading" class="taglines">Experiences I have built</h2>
+      <h2 id="experiences-heading" class="taglines">Shipped Work</h2>
       <div class="projects-grid">
         <article class="card project">
           <div class="media">
@@ -73,10 +73,28 @@
 
           <div class="meta">
             <div class="chips">
-              <span class="chip">Category</span>
-              <span class="chip">Tools / Stack</span>
+              <span class="chip">Unity</span>
+              <span class="chip">C#</span>
+              <span class="chip">AR Foundation</span>
             </div>
-            <h3>Project Title 1</h3>
+            <h3>Augmented Reality Pokemon Cards</h3>
+            <p>I made custom augmented reality Pokemon cards that can battle! 500,000+ Views on Social Media!</p>
+          </div>
+        </article>
+
+        <article class="card project">
+          <div class="media">
+            <div class="mediaPlaceholder">Media</div>
+          </div>
+
+          <div class="meta">
+            <div class="chips">
+              <span class="chip">Unity</span>
+              <span class="chip">C#</span>
+              <span class="chip">Meta SDKs</span>
+              <span class="chip">Meta Quest Store</span>
+            </div>
+            <h3>Break Room</h3>
             <p>Brief neutral description of the work or outcome.</p>
           </div>
         </article>
@@ -88,10 +106,12 @@
 
           <div class="meta">
             <div class="chips">
-              <span class="chip">Category</span>
-              <span class="chip">Tools / Stack</span>
+              <span class="chip">Unity</span>
+              <span class="chip">C#</span>
+              <span class="chip">AR Foundation</span>
+              <span class="chip">iOS Store</span>
             </div>
-            <h3>Project Title 2</h3>
+            <h3>Familiars</h3>
             <p>Brief neutral description of the work or outcome.</p>
           </div>
         </article>
@@ -103,25 +123,12 @@
 
           <div class="meta">
             <div class="chips">
-              <span class="chip">Category</span>
-              <span class="chip">Tools / Stack</span>
+              <span class="chip">Unity</span>
+              <span class="chip">C#</span>
+              <span class="chip">XR Interaction Toolkit</span>
+              <span class="chip">URP Shaders</span>
             </div>
-            <h3>Project Title 3</h3>
-            <p>Brief neutral description of the work or outcome.</p>
-          </div>
-        </article>
-
-        <article class="card project">
-          <div class="media">
-            <div class="mediaPlaceholder">Media</div>
-          </div>
-
-          <div class="meta">
-            <div class="chips">
-              <span class="chip">Category</span>
-              <span class="chip">Tools / Stack</span>
-            </div>
-            <h3>Project Title 4</h3>
+            <h3>Surface Changer</h3>
             <p>Brief neutral description of the work or outcome.</p>
           </div>
         </article>
@@ -191,8 +198,6 @@
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
 
-  <script src="./js/content.js"></script>
-
   <script>
     // Stagger fade-in for all .card elements in DOM order (top -> bottom)
     (function(){
@@ -201,17 +206,6 @@
         el.style.setProperty('--delay', `${i * 0.12}s`);
       });
     })();
-  </script>
-
-  <!-- Apply site content if available -->
-  <script>
-    try {
-      if (typeof window.populateSiteContent === 'function') {
-        window.populateSiteContent();
-      }
-    } catch (err) {
-      // error applying content: ignore in production
-    }
   </script>
 
 </body>
