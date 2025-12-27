@@ -8,6 +8,16 @@
   --max: 1300px;
   --profile-edge-gap: 24px;
   --content-top-gap: 28px; /* space between header and page content; adjust this */
+
+  /* Card variables (kept separate for project vs professional) */
+  --card-box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  --card-backdrop: blur(10px);
+
+  --professional-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  --professional-border: rgba(255,255,255,0.04);
+  --professional-radius: var(--radius);
+  --professional-box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  --professional-backdrop: blur(10px);
 }
 
 * { box-sizing: border-box; }
@@ -168,7 +178,6 @@ main.wrap { margin-top: var(--content-top-gap); }
   /* Showreel heading: fluid between 28px and 48px */
   font-size: clamp(28px, 5.2vw, 48px);
   font-weight: 600;
-
 }
 
 /* Showreel text (subtitle) */
@@ -299,9 +308,11 @@ main.wrap { margin-top: var(--content-top-gap); }
 
 /* Replacement for previous .centered: center headings/content */
 .taglines {
-  /* Section heading: fluid between 16px and 22px */
-  font-size: clamp(16px, 2.6vw, 22px);
+  /* Section heading: fluid between 18px and 26px (bumped up) */
+  font-size: clamp(18px, 3.2vw, 26px);
   text-align: center;
+  font-weight: 600; /* slightly less bold for these section headings */
+  margin: 0 0 6px; /* reduce default spacing under headings */
 }
 
 /* Reduce vertical spacing inside the brands card */
@@ -310,7 +321,7 @@ main.wrap { margin-top: var(--content-top-gap); }
   --edge-gap: 80px; /* change this value to increase/decrease the side gap */
   padding-top: 0px;
   padding-bottom: 2px;
-  margin: 2px auto;
+  margin: 12px auto 20px; /* increased bottom margin to separate from next section */
   box-sizing: border-box;
   /* on small viewports this leaves `--edge-gap` on each side; on larger
      viewports the width caps at `max-width` */
@@ -410,6 +421,8 @@ main.wrap { margin-top: var(--content-top-gap); }
 
 /* Professional Experience section: distinct look from project cards */
 .professional-section { text-align: center; margin: 18px 0 28px; }
+.professional-section .taglines { margin-bottom: 4px; }
+.professional-section .sub_taglines { display: block; margin: 4px 0 12px; color: var(--muted); font-size: clamp(13px, 1.6vw, 14px); font-weight: 500; }
 .professional-grid {
   display: flex;
   flex-direction: column;
@@ -420,11 +433,18 @@ main.wrap { margin-top: var(--content-top-gap); }
 .card.professional {
   width: 100%;
   max-width: 100%;
-  /* use a flatter, cleaner appearance than the project tiles */
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border: 1px solid rgba(255,255,255,0.04);
-  box-shadow: none;
+  /* keep distinct professional background but adopt project-style card formatting */
+  background: var(--professional-bg);
+  border: 1px solid var(--professional-border);
+  border-radius: var(--professional-radius);
   padding: 0; /* meta controls inner padding */
+  box-shadow: var(--professional-box-shadow);
+  backdrop-filter: var(--professional-backdrop);
+  opacity: 0;
+  transform: translateY(8px);
+  will-change: transform, opacity;
+  animation: fadeUp .6s ease forwards;
+  animation-delay: var(--delay, 0s);
   display: flex;
   align-items: flex-start;
   gap: 18px;
