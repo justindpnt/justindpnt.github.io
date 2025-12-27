@@ -418,6 +418,9 @@ main.wrap { margin-top: var(--content-top-gap); }
   border: 1px solid rgba(255,255,255,0.04);
   box-shadow: none;
   padding: 0; /* meta controls inner padding */
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
 }
 .card.professional .professional-meta {
   text-align: left;
@@ -428,6 +431,20 @@ main.wrap { margin-top: var(--content-top-gap); }
   font-size: clamp(16px, 2.4vw, 20px);
 }
 .card.professional p { margin: 0; color: var(--muted); }
+
+.professional-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin: 25px 0 0 18px;
+  flex: 0 0 64px;
+}
+
+@media (max-width: 620px) {
+  .card.professional { flex-direction: column; align-items: stretch; }
+  .professional-logo { width: 56px; height: 56px; margin: 14px auto 0 auto; flex: 0 0 auto; }
+  .card.professional .professional-meta { padding: 14px; }
+}
 
 @media (min-width: 900px) {
   /* make the professional cards a bit narrower than the wrap on very wide screens */
