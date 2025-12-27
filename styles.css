@@ -145,7 +145,7 @@ main.wrap { margin-top: var(--content-top-gap); }
   display: grid;
   grid-template-columns: minmax(300px, 60%) minmax(240px, 40%);
   gap: 20px;
-  align-items: center;
+  align-items: start; /* top-anchor text on the right instead of centering */
   width: 100%;
   margin: 0 0 28px 0;
 }
@@ -162,6 +162,13 @@ main.wrap { margin-top: var(--content-top-gap); }
 
 .tagline p {
   margin: 0;
+}
+
+.greeting {
+  /* Showreel heading: fluid between 28px and 48px */
+  font-size: clamp(28px, 5.2vw, 48px);
+  font-weight: 600;
+
 }
 
 /* Showreel text (subtitle) */
