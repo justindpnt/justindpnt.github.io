@@ -5,7 +5,7 @@
   --muted: #aab4c3;
   --border: rgba(255,255,255,.08);
   --radius: 16px;
-  --max: 1300px;
+  --max: 1600px;
   --profile-edge-gap: 24px;
   --content-top-gap: 28px; /* space between header and page content; adjust this */
 
@@ -19,9 +19,6 @@
   --professional-box-shadow: 0 10px 30px rgba(0,0,0,.25);
   --professional-backdrop: blur(10px);
 }
-
-* { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; height: 100%; }
 
 body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -44,7 +41,7 @@ a:hover { opacity: 1; text-decoration: underline; }
   max-width: var(--max);
   margin: 0 auto;
   /* reduced top/bottom padding to bring header closer to the viewport */
-  padding: 12px 20px 0px;
+  padding: 6px 6%;
 }
 
 /* Page content spacing */
