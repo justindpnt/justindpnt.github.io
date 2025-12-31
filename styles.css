@@ -450,6 +450,22 @@ main.wrap { margin-top: var(--content-top-gap); }
   font-size: clamp(12px, 1.6vw, 13px);
 }
 
+/* Stack skills sections vertically so each category appears one after another */
+.skills-grid {
+  display: block;
+  margin: 12px 0 24px 0;
+}
+
+.skills-column { min-width: 0; margin-bottom: 18px; }
+
+.skill-heading {
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  color: var(--text);
+  font-size: clamp(14px, 1.6vw, 16px);
+}
+
+
 .footer {
   padding-bottom: 50px;
   color: var(--muted);
