@@ -15,6 +15,7 @@
   --space-md: 1.125rem; /* 18px */
   --space-lg: 1.6875rem;/* 27px */
   --space-xl: 2.625rem; /* 42px */
+  --greeting-gap: clamp(0rem, 3vw, 4rem); /* spacing between greeting and showreel text */
 
   /* Typographic scale (rem)
      --type-h1: hero / largest
@@ -28,7 +29,7 @@
   --type-h2: 3rem;      /* 48px */
   --type-h3: 1.6875rem; /* 27px */
   --type-p1: 1.5rem;    /* 24px */
-  --type-p2: 1.125rem;  /* 18px */
+  --type-p2: 1.7rem;  /* 18px */
   --type-caption: 0.9375rem; /* 15px */
 
   /* Card variables (kept separate for project vs professional) */
@@ -40,6 +41,9 @@
   --professional-radius: var(--radius);
   --professional-box-shadow: 0 15px 45px rgba(0,0,0,.25);
   --professional-backdrop: blur(15px);
+
+  /* Text shadow for depth */
+  --text-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.02);
 }
 
 body {
@@ -76,18 +80,19 @@ main.wrap { margin-top: var(--content-top-gap); }
   justify-content: space-between;
 }
 
+/* Justin DuPont text */
 .brand h1 {
   margin: 0;
   /* Fluid: min 20px, scales with viewport, max 32px */
   font-size: clamp(1.875rem, 3.2vw, var(--type-h2));
-  letter-spacing: .2px;
-  line-height: 1.1;
+  letter-spacing: 0.2px;
+  line-height: 1;
 }
 
-/* Brand subtitle (Program Manager) */
+/* Program Manager text */
 #brand-subtitle {
   margin: 0;
-  font-size: clamp(0.8125rem, 1.8vw, var(--type-p2));
+  font-size: clamp(1rem, 1.8vw, var(--type-p2));
   color: var(--muted);
 }
 
@@ -98,28 +103,26 @@ main.wrap { margin-top: var(--content-top-gap); }
   gap: var(--space-md);
 }
 
-.brand .brand-text { display: flex; flex-direction: column; justify-content: center; }
+.brand .brand-text { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+}
 
 .header-avatar {
-  width: clamp(2.5rem, 6vw, 4.5rem);
+  width: clamp(4rem, 6vw, 7rem);
   aspect-ratio: 1 / 1;
   height: auto;
-  border-radius: var(--radius);
+  border-radius: 50%;
   object-fit: cover;
   display: block;
   align-self: center;
   flex-shrink: 0;
 }
 
-.subtitle {
-  margin: 0 0 0;
-  color: var(--muted);
-  font-size: clamp(var(--type-p2), 1.2vw, 1.21875rem);
-  line-height: 1.15;
-}
-
 .header {
   min-height: 7.5rem;
+  text-shadow: var(--text-shadow);
 }
 
 /* Social links */
@@ -186,25 +189,21 @@ main.wrap { margin-top: var(--content-top-gap); }
   text-align: left;
 }
 
-.tagline h1 {
-  margin: 0;
-}
-
-.tagline p {
-  margin: 0;
-}
 
 .greeting {
-  /* Showreel heading: fluid */
-  font-size: clamp(1.75rem, 5.2vw, var(--type-h1));
+  /* Hi I'm Justin text */
+  font-size: clamp(1.75rem, 5.2vw, calc(var(--type-h1) + .5rem));
   font-weight: 600;
+  text-shadow: var(--text-shadow);
+  margin: 0;
 }
 
-/* Showreel text (subtitle) */
+/* sub text */
 .showreel-text {
-  font-size: clamp(var(--type-p2), 3.8vw, var(--type-p1));
-  margin-top: var(--space-lg);
-  text-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.02);
+  font-size: clamp(1.125rem, 3.8vw, calc(var(--type-p1) + 1rem));
+  margin: 0;
+  margin-top: var(--greeting-gap);
+  text-shadow: var(--text-shadow);
 }
 
 .showreel-gif {
