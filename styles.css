@@ -312,11 +312,74 @@ main.wrap { margin-top: var(--content-top-gap); }
 /* Each project card uses the 2-col layout and gets inner padding so the .card appearance remains */
 .projects-grid .project {
   display: grid;
-  grid-template-columns: 30rem 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: calc(var(--space-lg) * 1.25);
   padding: 0;
   align-items: stretch;
   border-radius: calc(var(--radius) * 1.2);
+}
+
+/* Alternate layout: even cards have media on the right */
+.projects-grid .project:nth-child(even) {
+  direction: rtl;
+}
+
+.projects-grid .project:nth-child(even) > * {
+  direction: ltr;
+}
+
+/* Right-align text content in even cards (where media is on the right) */
+.projects-grid .project:nth-child(even) .meta {
+  text-align: right;
+}
+
+.projects-grid .project:nth-child(even) .chips {
+  justify-content: flex-end;
+}
+
+/* Left media column - center content */
+.projects-grid .media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: calc(var(--radius) * 1.2);
+  max-height: 25rem; /* constrain media height to prevent tall images from stretching the card */
+}
+
+.projects-grid .media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: calc(var(--radius) * 1.2);
+}
+
+.project h3 {
+  margin: calc(var(--space-xs) * 1.5) 0;
+  font-size: clamp(1.875rem, 3vw, 2.5rem);
+  font-weight: 500;
+}
+
+.project p {
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(1.125rem, 2vw, 2rem);
+}
+
+.project p a {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+/* Individual media customization */
+#familiars-media {
+  max-height: 40rem; /* make Familiars media box smaller */
+}
+
+#familiars-media img {
+  width: 100%; /* adjust width as needed */
+  height: 100%; /* adjust height as needed */
+  object-fit: contain; /* change to 'contain' if needed */
 }
 
 /* Left media column sizing */
@@ -341,12 +404,6 @@ main.wrap { margin-top: var(--content-top-gap); }
   margin-top: auto;
 }
 
-/* Slightly stronger title in project cards */
-.project h3 {
-  margin: calc(var(--space-xs) * 1.5) 0;
-  font-size: clamp(1.5rem, 2.4vw, var(--type-h3));
-  font-weight: 700;
-}
 
 /* Responsive: stack media on top for narrow viewports */
 @media (max-width: 980px) {
@@ -431,22 +488,12 @@ main.wrap { margin-top: var(--content-top-gap); }
 
 .chip {
   /* Chip text: min 11px, max 12px */
-  font-size: clamp(var(--type-p2), 1.4vw, var(--type-p1));
+  font-size: clamp(calc(var(--type-p2) - .5rem), 1.4vw, var(--type-p1));
   padding: calc(var(--space-xs) * 1.5) calc(var(--space-sm) * 1.5);
   border-radius: 999px;
   border: 1px solid var(--border);
   color: var(--muted);
   background: rgba(0,0,0,.2);
-}
-
-.project h3 {
-  margin: calc(var(--space-xs) * 1.5) 0;
-  font-size: clamp(1.5rem, 2.4vw, var(--type-h3));
-}
-
-.project p {
-  margin: 0;
-  color: var(--muted);
 }
 
 .skills {
