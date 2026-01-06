@@ -60,6 +60,17 @@ body {
   background-size: cover;
 }
 
+/* Global visual scale to match 80% browser zoom: scales the site to 0.8
+   and compensates width so layout fills viewport. Caveats: transform can
+   blur text slightly and may affect fixed-position elements. */
+.site-scale {
+  transform: scale(0.8);
+  transform-origin: 0 0;
+  width: calc(100% / 0.8); /* 125% to compensate for 0.8 scale */
+  will-change: transform;
+}
+body { overflow-x: hidden; }
+
 a { color: inherit; text-decoration: none; opacity: .9; }
 a:hover { opacity: 1; text-decoration: underline; }
 
@@ -421,11 +432,28 @@ main.wrap { margin-top: var(--content-top-gap); }
   flex-direction: column;
 }
 
+/* Apply padding only to the text/meta column of project cards
+   and keep media column padding-free so media can span edge-to-edge. */
+.projects-grid .project .meta {
+  padding: 0 clamp(1rem, 2.5vw, 2rem);
+}
+.projects-grid .project .media {
+  padding: 0;
+}
+
 /* Anchor chips to the bottom of the card */
 .projects-grid .meta .chips {
   margin-top: auto;
 }
 
+/* Make chips inside project meta smaller and tighter on small screens */
+.projects-grid .meta .chips {
+  gap: clamp(0.3rem, 1vw, 0.85rem);
+}
+.projects-grid .meta .chip {
+  font-size: clamp(0.75rem, 1.25vw, 1rem);
+  padding: clamp(0.2rem, 0.8vw, 0.45rem) clamp(0.35rem, 1.1vw, 0.65rem);
+}
 
 /* Responsive: stack media on top for narrow viewports */
 @media (max-width: 980px) {
