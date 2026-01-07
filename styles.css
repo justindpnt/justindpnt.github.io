@@ -703,3 +703,7 @@ main.wrap { margin-top: var(--content-top-gap); }
   /* make the professional cards a bit narrower than the wrap on very wide screens */
   .card.professional { max-width: 84.375rem; }
 }
+
+@media (max-width: 900px) {
+  body { background-attachment: scroll; }
+}
