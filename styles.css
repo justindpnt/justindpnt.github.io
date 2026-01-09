@@ -389,7 +389,7 @@ main.wrap { margin-top: var(--content-top-gap); }
 
 .project h3 {
   margin: calc(var(--space-xs) * 1.5) 0;
-  font-size: clamp(1.875rem, 3vw, 2.5rem);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
   font-weight: 500;
 }
 
@@ -572,9 +572,8 @@ main.wrap { margin-top: var(--content-top-gap); }
   font-size: clamp(1.3125rem, 1.6vw, var(--type-h3));
 }
 
-
 .footer {
-  padding-bottom: 4.6875rem;
+  padding-bottom: 1rem;
   color: var(--muted);
 }
 
@@ -706,4 +705,17 @@ main.wrap { margin-top: var(--content-top-gap); }
 
 @media (max-width: 900px) {
   body { background-attachment: scroll; }
+}
+
+/* Constrain media images used in the Writing section so they don't appear too large */
+.writing-section .media img {
+  width: auto;
+  height: 20rem; /* adjust this value if you want a larger/smaller image */
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Don't round the AR Insider logo's corners */
+.writing-section .media img[src$="ARInsider-Logo.webp"] {
+  border-radius: 0;
 }
