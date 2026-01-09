@@ -64,10 +64,13 @@ body {
    and compensates width so layout fills viewport. Caveats: transform can
    blur text slightly and may affect fixed-position elements. */
 .site-scale {
-  transform: scale(0.8);
-  transform-origin: 0 0;
-  width: calc(100% / 0.8); /* 125% to compensate for 0.8 scale */
-  will-change: transform;
+  zoom: .8;
+}
+
+@supports not (zoom: 1) {
+  .site-scale {
+    zoom: 1;
+  }
 }
 body { overflow-x: hidden; }
 
@@ -573,7 +576,7 @@ main.wrap { margin-top: var(--content-top-gap); }
 }
 
 .footer {
-  padding-bottom: 1rem;
+  padding-bottom: 4rem;
   color: var(--muted);
 }
 
