@@ -41,6 +41,7 @@
   --professional-radius: var(--radius);
   --professional-box-shadow: 0 15px 45px rgba(0,0,0,.25);
   --professional-backdrop: blur(15px);
+  
 
   /* Text shadow for depth */
   --text-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.02);
@@ -64,7 +65,7 @@ body {
    and compensates width so layout fills viewport. Caveats: transform can
    blur text slightly and may affect fixed-position elements. */
 .site-scale {
-  zoom: .8;
+  zoom: .7;
 }
 
 @supports not (zoom: 1) {
@@ -474,7 +475,7 @@ main.wrap { margin-top: var(--content-top-gap); }
 
 @media (max-width: 620px) {
   .professional-logo { width: 5.25rem; height: 5.25rem; margin: 1.3125rem auto 0 auto; flex: 0 0 auto; }
-  .card.professional .professional-meta { padding: 0.875rem; }
+  .card.professional .professional-meta { padding: var(--professional-meta-padding-mobile); }
 }
 
 /* Give the Writing section more breathing room from the previous section */
@@ -598,10 +599,23 @@ main.wrap { margin-top: var(--content-top-gap); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+
+/* Professional card variables (local to this section) */
+:root {
+  --professional-meta-padding: 0;
+  --professional-meta-padding-mobile: 0.875rem;
+  --professional-h3-size: clamp(1.6rem, 3vw, 2.4rem);
+  --professional-p-size: clamp(1.125rem, 2vw, 2rem);
+  /* Single control for body text inside professional bullets, game text, and subtext */
+  --professional-body-size: clamp(1rem, 2vw, 1.4rem);
+  --professional-logo-margin: 2.34375rem 0 0 1.6875rem;
+  /* Slightly less-muted color used specifically for professional bullet text */
+  --professional-bullet-color: #c8ced6;
+}
+
 /* Professional Experience section: distinct look from project cards */
 .professional-section { text-align: center; margin: calc(var(--space-lg) * 1) 0 calc(var(--space-xl) * 1); }
 .professional-section .taglines { margin-bottom: calc(var(--space-xs) * 1.5); }
-.professional-section .sub_taglines { display: block; margin: calc(var(--space-xs) * 1.5) 0 calc(var(--space-lg) * 1); color: var(--muted); font-size: clamp(var(--type-p2), 1.6vw, var(--type-p1)); font-weight: 500; }
 .professional-grid {
   display: flex;
   flex-direction: column;
@@ -630,13 +644,17 @@ main.wrap { margin-top: var(--content-top-gap); }
 }
 .card.professional .professional-meta {
   text-align: left;
-  padding: 1.875rem 2.0625rem;
+  padding: .5rem;
 }
 .card.professional h3 {
-  margin: 0 0 0.5625rem 0;
-  font-size: clamp(1.875rem, 3.0vw, var(--type-h2));
+  margin: 0;
+  font-size: var(--professional-h3-size);
 }
-.card.professional p { margin: 0; color: var(--muted); font-size: clamp(var(--type-p2), 1.8vw, var(--type-p1)); }
+.card.professional p { 
+  margin: 0; 
+  color: var(--muted); 
+  font-size: var(--professional-p-size); 
+}
 
 /* Bulleted list in professional cards: match text color and marker color */
 .card.professional .professional-bullets {
@@ -646,7 +664,9 @@ main.wrap { margin-top: var(--content-top-gap); }
 }
 .card.professional .professional-bullets li {
   margin-bottom: 0.75rem;
-  line-height: 1.4;
+  line-height: 1.2;
+  font-size: var(--professional-body-size);
+  color: var(--professional-bullet-color);
 }
 .card.professional .professional-bullets li::marker {
   color: var(--text);
@@ -655,7 +675,7 @@ main.wrap { margin-top: var(--content-top-gap); }
 .card.professional .professional-bullets .subtext {
   margin: 0.375rem 0 0 0;
   color: var(--muted);
-  font-size: 0.95em;
+  font-size: var(--professional-body-size);
   margin-left: 0.125rem;
 }
 
@@ -667,7 +687,7 @@ main.wrap { margin-top: var(--content-top-gap); }
   list-style: none; /* hide default marker for these rows */
   padding-left: 0;
 }
-.card.professional .professional-bullets li.with-logo .game-text { flex: 1; }
+.card.professional .professional-bullets li.with-logo .game-text { flex: 1; font-size: var(--professional-body-size); }
 .card.professional .unity-logo {
   width: 4.5rem;
   height: 4.5rem;
@@ -691,14 +711,14 @@ main.wrap { margin-top: var(--content-top-gap); }
   width: 6rem;
   height: 6rem;
   object-fit: contain;
-  margin: 2.34375rem 0 0 1.6875rem;
+  margin: var(--professional-logo-margin);
   flex: 0 0 6rem;
 }
 
 @media (max-width: 620px) {
   .card.professional { flex-direction: column; align-items: stretch; }
   .professional-logo { width: 5.25rem; height: 5.25rem; margin: 1.3125rem auto 0 auto; flex: 0 0 auto; }
-  .card.professional .professional-meta { padding: 0.875rem; }
+  .card.professional .professional-meta { padding: var(--professional-meta-padding-mobile); }
 }
 
 @media (min-width: 900px) {
