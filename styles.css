@@ -65,7 +65,7 @@ body {
    and compensates width so layout fills viewport. Caveats: transform can
    blur text slightly and may affect fixed-position elements. */
 .site-scale {
-  zoom: .7;
+  zoom: .75;
 }
 
 @supports not (zoom: 1) {
@@ -237,7 +237,7 @@ main.wrap { margin-top: var(--content-top-gap); }
 
 /* sub text */
 .showreel-text {
-  font-size: clamp(1.125rem, 3.8vw, calc(var(--type-p1) + 1rem));
+  font-size: clamp(1.125rem, 3.8vw, calc(var(--type-p1) + 1.6rem));
   margin: 0;
   margin-top: var(--greeting-gap);
   text-shadow: var(--text-shadow);
