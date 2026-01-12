@@ -419,31 +419,33 @@ main.wrap { margin-top: var(--content-top-gap); }
 /* Individual media customization */
 #familiars-media {
   aspect-ratio: 16 / 9;
+  width: 100%;
+  justify-self: center;
 }
 
 /* Video containers with native aspect ratios */
 #breakroom-media {
   aspect-ratio: 16 / 9;
-  max-height: 40rem;
-  justify-self: center; 
+  width: 80%;
+  justify-self: center;
 }
 
 #pokemon-media {
   aspect-ratio: 16 / 9;
-  max-height: 40rem;
-  justify-self: center; 
+  width: 80%;
+  justify-self: center;
 }
 
 #surface-changer-media {
   aspect-ratio: 16 / 9;
-  max-height: 40rem;
-  justify-self: center; 
+  width: 70%;
+  justify-self: center;
 }
 
 #headsets-media {
   aspect-ratio: 16 / 9;
-  max-width: 90%;  /* or whatever percentage feels right - try 80%, 90%, 100% */
-  justify-self: center; 
+  width: 70%;
+  justify-self: center;
 }
 
 /* Left media column sizing */

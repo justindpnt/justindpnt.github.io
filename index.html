@@ -384,24 +384,14 @@
           const video = entry.target;
 
           if (entry.isIntersecting) {
-            // Load the video if not already loaded
-            if (video.readyState === 0) {
-              video.load();
-            }
-            if (video.paused) {
-              video.play().catch(() => {});
-            }
+            if (video.readyState === 0) video.load();
+            video.play().catch(() => {});
           } else {
-            if (!video.paused) {
-              video.pause();
-            }
+            video.pause();
           }
         });
       },
-      {
-        threshold: 0.3,
-        rootMargin: '100px' // Start loading video 100px before it enters viewport
-      }
+      { threshold: 0.7 }
     );
 
     videos.forEach(video => observer.observe(video));
