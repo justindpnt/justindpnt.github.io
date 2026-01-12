@@ -279,6 +279,7 @@ main.wrap { margin-top: var(--content-top-gap); }
   text-align: center;
   line-height: 1.2;
   margin: 2rem  0 0.375rem; /* reduce default spacing under headings */
+  font-weight: 400;
 }
 
 /* Brands section */
@@ -554,11 +555,11 @@ main.wrap { margin-top: var(--content-top-gap); }
 }
 
 .skills li {
-  padding: 0.75rem 0.9375rem;
+  padding: 0.45rem 1.5rem; /* slightly smaller chips */
   border-radius: 999px;
   border: 1px solid var(--border);
   background: rgba(0,0,0,.18);
-  font-size: clamp(var(--type-p2), 1.6vw, var(--type-p2));
+  font-size: clamp(0.75rem, 1.2vw, 1.4rem);
 }
 
 /* Stack skills sections vertically so each category appears one after another */
