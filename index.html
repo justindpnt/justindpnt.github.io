@@ -39,7 +39,7 @@
   <main class="wrap">
 
     <section class="showreel">
-      <video class="showreel-gif" loop muted playsinline preload="metadata" aria-label="Showreel">
+      <video class="showreel-gif" loop muted playsinline preload="none" aria-label="Showreel">
         <source src="assets/Project-Videos/Highlight_Reel.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -73,7 +73,10 @@
       <div class="projects-grid">
         <article class="card project">
           <div class="media" id="familiars-media">
-            <img src="assets/Project-GIFs/Familiars.gif" alt="Familiars Demo">
+            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="Familiars Demo">
+              <source src="assets/Project-Videos/Familiars.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
 
           <div class="meta">
@@ -90,8 +93,8 @@
 
         <article class="card project">
           <div class="media" id="breakroom-media">
-            <video class="showreel-gif" loop muted playsinline preload="metadata" aria-label="Break Room Demo">
-              <source src="assets/Project-Videos/BreakRoom_Reel.mp4" type="video/mp4">
+            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="Break Room Demo">
+              <source src="assets/Project-Videos/Breakroom.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -112,8 +115,8 @@
 
         <article class="card project">
           <div class="media" id="pokemon-media">
-            <video class="showreel-gif" loop muted playsinline preload="metadata" aria-label="AR Pokemon Cards Demo">
-              <source src="assets/Project-Videos/Pokemon_Reel.mp4" type="video/mp4">
+            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="AR Pokemon Cards Demo">
+              <source src="assets/Project-Videos/Pokemon.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -133,7 +136,10 @@
 
         <article class="card project">
           <div class="media" id="surface-changer-media">
-            <img src="assets/Project-GIFs/short pokemon gif.gif" alt="Surface Changer Demo">
+            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="Surface Changer Demo">
+              <source src="assets/Project-Videos/Surface Changer.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
 
           <div class="meta">
@@ -152,7 +158,10 @@
 
         <article class="card project">
           <div class="media" id="headsets-media">
-            <img src="assets/Project-GIFs/short pokemon gif.gif" alt="3D Printed AR Headsets Demo">
+            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="3D Printed AR Headsets Demo">
+              <source src="assets/Project-Videos/Headset.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
           </div>
 
           <div class="meta">
@@ -375,6 +384,10 @@
           const video = entry.target;
 
           if (entry.isIntersecting) {
+            // Load the video if not already loaded
+            if (video.readyState === 0) {
+              video.load();
+            }
             if (video.paused) {
               video.play().catch(() => {});
             }
@@ -386,7 +399,8 @@
         });
       },
       {
-        threshold: 0.3
+        threshold: 0.3,
+        rootMargin: '100px' // Start loading video 100px before it enters viewport
       }
     );
 

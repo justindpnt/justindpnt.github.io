@@ -343,7 +343,7 @@ main.wrap { margin-top: var(--content-top-gap); }
 .projects-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-lg);
+  gap: calc(var(--space-lg) * 1.8);
   margin: calc(var(--space-md) * 1.5) 0;
 }
 
@@ -418,22 +418,32 @@ main.wrap { margin-top: var(--content-top-gap); }
 
 /* Individual media customization */
 #familiars-media {
-  max-height: 40rem; /* make Familiars media box smaller */
-}
-
-#familiars-media img {
-  width: 100%; /* adjust width as needed */
-  height: 100%; /* adjust height as needed */
-  object-fit: contain; /* change to 'contain' if needed */
+  aspect-ratio: 16 / 9;
 }
 
 /* Video containers with native aspect ratios */
 #breakroom-media {
   aspect-ratio: 16 / 9;
+  max-height: 40rem;
+  justify-self: center; 
 }
 
 #pokemon-media {
   aspect-ratio: 16 / 9;
+  max-height: 40rem;
+  justify-self: center; 
+}
+
+#surface-changer-media {
+  aspect-ratio: 16 / 9;
+  max-height: 40rem;
+  justify-self: center; 
+}
+
+#headsets-media {
+  aspect-ratio: 16 / 9;
+  max-width: 90%;  /* or whatever percentage feels right - try 80%, 90%, 100% */
+  justify-self: center; 
 }
 
 /* Left media column sizing */
@@ -725,16 +735,16 @@ main.wrap { margin-top: var(--content-top-gap); }
 }
 
 .professional-logo {
-  width: 6rem;
-  height: 6rem;
+  width: clamp(5rem, 8vw, 8rem);
+  height: clamp(5rem, 8vw, 8rem);
   object-fit: contain;
   margin: var(--professional-logo-margin);
-  flex: 0 0 6rem;
+  flex: 0 0 clamp(5rem, 8vw, 8rem);
 }
 
 @media (max-width: 620px) {
   .card.professional { flex-direction: column; align-items: stretch; }
-  .professional-logo { width: 5.25rem; height: 5.25rem; margin: 1.3125rem auto 0 auto; flex: 0 0 auto; }
+  .professional-logo { width: clamp(4.5rem, 12vw, 6rem); height: clamp(4.5rem, 12vw, 6rem); margin: 1.3125rem auto 0 auto; flex: 0 0 auto; }
   .card.professional .professional-meta { padding: var(--professional-meta-padding-mobile); }
 }
 
