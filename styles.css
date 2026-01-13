@@ -176,7 +176,6 @@ main.wrap { margin-top: var(--content-top-gap); }
   transition: background .15s ease, transform .08s ease, box-shadow .15s ease, border-color .15s ease;
   /* match card/backdrop styling used for tiles */
   box-shadow: 0 10px 30px rgba(0,0,0,.25);
-  backdrop-filter: blur(10px);
   min-height: clamp(.2rem, 3.5vw, 2.75rem);
 }
 .resume-btn:hover {
@@ -252,10 +251,9 @@ main.wrap { margin-top: var(--content-top-gap); }
   display: block;
   object-fit: contain;
   border-radius: var(--radius); /* rounded corners */
-  background: rgba(18, 20, 27, .7);
+  background: rgba(18, 20, 27, .85);
   border: 1px solid var(--border);
   box-shadow: 0 10px 30px rgba(0,0,0,.25);
-  backdrop-filter: blur(10px);
   overflow: hidden;
 }
 
@@ -316,12 +314,11 @@ main.wrap { margin-top: var(--content-top-gap); }
 .brand-item img.hyperx { height: clamp(4.25rem, 6.8vw, 5.71875rem); }
 
 .card {
-  background: rgba(18, 20, 27, .7);
+  background: rgba(18, 20, 27, .85);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: calc(var(--space-sm) * 1.6875); /* ~27px */
   box-shadow: 0 10px 30px rgba(0,0,0,.25);
-  backdrop-filter: blur(10px);
   opacity: 0;
   transform: translateY(calc(var(--space-xs) * 2));
   will-change: transform, opacity;
@@ -661,7 +658,6 @@ main.wrap { margin-top: var(--content-top-gap); }
   border-radius: var(--professional-radius);
   padding: 0; /* meta controls inner padding */
   box-shadow: var(--professional-box-shadow);
-  backdrop-filter: var(--professional-backdrop);
   opacity: 0;
   transform: translateY(0.75rem);
   will-change: transform, opacity;
