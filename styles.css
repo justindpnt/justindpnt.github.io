@@ -1,51 +1,62 @@
+/* ========================================
+   GLOBAL VARIABLES
+   ======================================== */
+
 :root {
-  --bg: #0f1724; /* slightly lighter base */
+  /* Color palette */
+  --bg: #0f1724;
   --panel: #12141b;
   --text: #e9eef5;
   --muted: #aab4c3;
   --border: rgba(255,255,255,.08);
-  --radius: 1.5rem; /* 24px */
+  
+  /* Layout constants */
+  --radius: 1.5rem;
   --max: 150rem;
-  --profile-edge-gap: 2.25rem; /* 36px */
-  --content-top-gap: clamp(rem, 4vw, 2.625rem); /* space between header and page content; scales down on small screens */
-
-  /* Spacing scale (rem) */
-  --space-xs: 0.5625rem; /* 9px */
-  --space-sm: 1rem;     /* 16px */
-  --space-md: 1.125rem; /* 18px */
-  --space-lg: 1.6875rem;/* 27px */
-  --space-xl: 2.625rem; /* 42px */
-  --greeting-gap: clamp(0rem, 3vw, 4rem); /* spacing between greeting and showreel text */
-
-  /* Typographic scale (rem)
-     --type-h1: hero / largest
-     --type-h2: section titles
-     --type-h3: card titles
-     --type-p1: lead paragraph
-     --type-p2: body paragraph
-     --type-caption: small/caption
-  */
-  --type-h1: 3.5rem;    /* 56px */
-  --type-h2: 3rem;      /* 48px */
-  --type-h3: 1.6875rem; /* 27px */
-  --type-p1: 1.5rem;    /* 24px */
-  --type-p2: 1.7rem;  /* 18px */
-  --type-caption: 0.9375rem; /* 15px */
-
-  /* Card variables (kept separate for project vs professional) */
+  --profile-edge-gap: 2.25rem;
+  --content-top-gap: clamp(rem, 4vw, 2.625rem);
+  
+  /* Spacing scale */
+  --space-xs: 0.5625rem;
+  --space-sm: 1rem;
+  --space-md: 1.125rem;
+  --space-lg: 1.6875rem;
+  --space-xl: 2.625rem;
+  --greeting-gap: clamp(0rem, 3vw, 4rem);
+  
+  /* Typography scale */
+  --type-h1: 3.5rem;
+  --type-h2: 3rem;
+  --type-h3: 1.6875rem;
+  --type-p1: 1.5rem;
+  --type-p2: 1.7rem;
+  --type-caption: 0.9375rem;
+  
+  /* Card styling */
   --card-box-shadow: 0 15px 45px rgba(0,0,0,.25);
   --card-backdrop: blur(15px);
-
+  
+  /* Professional cards (separate from project cards) */
   --professional-bg: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
   --professional-border: rgba(255,255,255,0.04);
   --professional-radius: var(--radius);
   --professional-box-shadow: 0 15px 45px rgba(0,0,0,.25);
   --professional-backdrop: blur(15px);
+  --professional-meta-padding: 0;
+  --professional-meta-padding-mobile: 0.875rem;
+  --professional-h3-size: clamp(1.6rem, 3vw, 2.4rem);
+  --professional-p-size: clamp(1.125rem, 2vw, 2rem);
+  --professional-body-size: clamp(1rem, 2vw, 1.4rem);
+  --professional-logo-margin: 2.34375rem 0 0 1.6875rem;
+  --professional-bullet-color: #c8ced6;
   
-
-  /* Text shadow for depth */
+  /* Visual effects */
   --text-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 1px 0 rgba(255,255,255,0.02);
 }
+
+/* ========================================
+   BASE & LAYOUT
+   ======================================== */
 
 body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -55,15 +66,12 @@ body {
     var(--bg);
   color: var(--text);
   line-height: 1.5;
-  /* keep the gradient visually continuous across the whole page */
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
+  overflow-x: hidden;
 }
 
-/* Global visual scale to match 80% browser zoom: scales the site to 0.8
-   and compensates width so layout fills viewport. Caveats: transform can
-   blur text slightly and may affect fixed-position elements. */
 .site-scale {
   zoom: .75;
 }
@@ -73,47 +81,41 @@ body {
     zoom: 1;
   }
 }
-body { overflow-x: hidden; }
 
-a { color: inherit; text-decoration: none; opacity: .9; }
-a:hover { opacity: 1; text-decoration: underline; }
+a { 
+  color: inherit; 
+  text-decoration: none; 
+  opacity: .9; 
+}
+
+a:hover { 
+  opacity: 1; 
+  text-decoration: underline; 
+}
 
 .wrap {
   max-width: var(--max);
   margin: 0 auto;
-  /* reduced top/bottom padding to bring header closer to the viewport */
-  /* horizontal padding clamps between 1% and 6% while remaining fluid */
   padding: 0.375rem clamp(1%, 4vw, 6%);
 }
 
-/* Page content spacing */
-main.wrap { margin-top: var(--content-top-gap); }
+main.wrap { 
+  margin-top: var(--content-top-gap); 
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
 
 .header {
   display: flex;
   gap: var(--space-lg);
   align-items: center;
   justify-content: space-between;
+  min-height: 7.5rem;
+  text-shadow: var(--text-shadow);
 }
 
-/* Justin DuPont text */
-.brand h1 {
-  margin: 0;
-  /* Fluid: min 20px, scales with viewport, max 32px */
-  font-size: clamp(1.4rem, 3.2vw, var(--type-h2));
-  letter-spacing: 0.2px;
-  line-height: 1;
-}
-
-/* Program Manager text */
-#brand-subtitle {
-  margin: 0;
-  font-size: clamp(.9rem, 2.8vw, var(--type-p2));
-  line-height: 1.2;
-  color: var(--muted);
-}
-
-/* Header brand layout: avatar left of text */
 .brand {
   display: flex;
   align-items: center;
@@ -124,6 +126,20 @@ main.wrap { margin-top: var(--content-top-gap); }
   display: flex; 
   flex-direction: column; 
   justify-content: center; 
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 3.2vw, var(--type-h2));
+  letter-spacing: 0.2px;
+  line-height: 1;
+}
+
+#brand-subtitle {
+  margin: 0;
+  font-size: clamp(.9rem, 2.8vw, var(--type-p2));
+  line-height: 1.2;
+  color: var(--muted);
 }
 
 .header-avatar {
@@ -137,12 +153,6 @@ main.wrap { margin-top: var(--content-top-gap); }
   flex-shrink: 0;
 }
 
-.header {
-  min-height: 7.5rem;
-  text-shadow: var(--text-shadow);
-}
-
-/* Social links */
 .links {
   display: flex;
   gap: clamp(0.4rem, 1.6vw, 1.3125rem);
@@ -151,14 +161,22 @@ main.wrap { margin-top: var(--content-top-gap); }
   align-items: center;
 }
 
-.links a { display: inline-flex; align-items: center; justify-content: center; }
+.links a { 
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+
 .links img.icon {
   width: clamp(1.3rem, 4.5vw, 3.25rem);
   height: auto;
   display: block;
   opacity: .95;
 }
-.links img.icon:hover { opacity: 1; }
+
+.links img.icon:hover { 
+  opacity: 1; 
+}
 
 .resume-btn {
   display: inline-flex;
@@ -170,14 +188,13 @@ main.wrap { margin-top: var(--content-top-gap); }
   color: var(--text);
   border: 1px solid rgba(255,255,255,0.12);
   font-weight: 700;
-  /* Button text fluid: min 14px, max 18px */
   font-size: clamp(0.857rem, 1.8vw, 2rem);
   text-decoration: none;
   transition: background .15s ease, transform .08s ease, box-shadow .15s ease, border-color .15s ease;
-  /* match card/backdrop styling used for tiles */
   box-shadow: 0 10px 30px rgba(0,0,0,.25);
   min-height: clamp(.2rem, 3.5vw, 2.75rem);
 }
+
 .resume-btn:hover {
   background: rgba(255,255,255,0.06);
   transform: translateY(-0.0625rem);
@@ -186,36 +203,15 @@ main.wrap { margin-top: var(--content-top-gap); }
   text-decoration: none;
 }
 
-@media (max-width: 560px) {
-  .resume-btn { padding: clamp(0.6rem, 2.5vw, 0.9375rem) clamp(0.75rem, 6vw, 1.3125rem); font-size: clamp(0.875rem, 1.6vw, 1rem); }
-}
+/* ========================================
+   SHOWREEL SECTION
+   ======================================== */
 
-/* Header links: prefer rows of 4 or 2 icons when wrapping; keep resume button on its own row */
-@media (max-width: 900px) {
-  .links {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    gap: clamp(0.75rem, 1.6vw, 1.3125rem);
-    justify-content: end;
-    align-items: center;
-  }
-  .links > .resume-btn { grid-column: 1 / -1; justify-self: center; }
-}
-
-@media (max-width: 560px) {
-  .links {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .links > a { justify-self: center; }
-  .links > .resume-btn { grid-column: 1 / -1; justify-self: center; }
-}
-
-/* Showreel section: two-column layout (video + text) */
 .showreel {
   display: grid;
   grid-template-columns: minmax(28.125rem, 60%) minmax(22.5rem, 40%);
   gap: 1.875rem;
-  align-items: start; /* top-anchor text on the right instead of centering */
+  align-items: start;
   width: 100%;
   margin: 0 0 2.625rem 0;
 }
@@ -227,14 +223,12 @@ main.wrap { margin-top: var(--content-top-gap); }
 }
 
 .greeting {
-  /* Hi I'm Justin text */
   font-size: clamp(1.75rem, 5.2vw, calc(var(--type-h1) + .5rem));
   font-weight: 600;
   text-shadow: var(--text-shadow);
   margin: 0;
 }
 
-/* sub text */
 .showreel-text {
   font-size: clamp(1.125rem, 3.8vw, calc(var(--type-p1) + 1.6rem));
   margin: 0;
@@ -245,42 +239,50 @@ main.wrap { margin-top: var(--content-top-gap); }
 .showreel-gif {
   width: 100%;
   aspect-ratio: 16/9;
-  height: auto; /* preserve original aspect ratio */
+  height: auto;
   min-height: 0;
-  max-height: 80vh; /* prevent it from being excessively tall */
+  max-height: 80vh;
   display: block;
   object-fit: contain;
-  border-radius: var(--radius); /* rounded corners */
+  border-radius: var(--radius);
   background: rgba(18, 20, 27, .85);
   border: 1px solid var(--border);
   box-shadow: 0 10px 30px rgba(0,0,0,.25);
   overflow: hidden;
 }
 
-@media (max-width: 900px) {
-  .showreel {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    gap: 1.125rem;
-    width: auto;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
+/* ========================================
+   SECTION HEADINGS
+   ======================================== */
 
-/* Replacement for previous .centered: center headings/content */
 .taglines {
-  /* Section heading: matches showreel-text sizing */
   font-size: clamp(1.125rem, 3.8vw, calc(var(--type-p1) + 1rem));
   text-align: center;
   line-height: 1.2;
-  margin: 2rem  0 0.375rem; /* reduce default spacing under headings */
+  margin: 2rem 0 0.375rem;
   font-weight: 400;
 }
 
-/* Brands section */
+/* ========================================
+   BRANDS SECTION
+   ======================================== */
+
+.card.brands {
+  --edge-gap: 7.5rem;
+  padding-top: 0;
+  padding-bottom: 0.1875rem;
+  margin: 1.125rem auto 1.875rem;
+  box-sizing: border-box;
+  width: calc(100% - (var(--edge-gap) * 1.15));
+  max-width: 65.625rem;
+  min-width: 18rem;
+  min-height: 8.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: auto;
+}
+
 .brands-grid {
   display: flex;
   gap: 0;
@@ -289,6 +291,7 @@ main.wrap { margin-top: var(--content-top-gap); }
   margin: 0 0.375rem;
   flex-wrap: wrap;
 }
+
 .brand-item {
   display: inline-flex;
   align-items: center;
@@ -301,6 +304,7 @@ main.wrap { margin-top: var(--content-top-gap); }
   min-height: clamp(4rem, 10vh, 7.125rem);
   flex: 0 0 auto;
 }
+
 .brand-item img {
   width: auto;
   height: clamp(2.5rem, 5vw, 4.21875rem);
@@ -308,16 +312,27 @@ main.wrap { margin-top: var(--content-top-gap); }
   object-fit: contain;
 }
 
-/* Individual brand sizes (reduced by ~20%) */
-.brand-item img.microsoft { height: clamp(2.5rem, 4vw, 3.375rem); }
-.brand-item img.hp { height: clamp(3.5rem, 5.8vw, 4.875rem); }
-.brand-item img.hyperx { height: clamp(4.25rem, 6.8vw, 5.71875rem); }
+.brand-item img.microsoft { 
+  height: clamp(2.5rem, 4vw, 3.375rem); 
+}
+
+.brand-item img.hp { 
+  height: clamp(3.5rem, 5.8vw, 4.875rem); 
+}
+
+.brand-item img.hyperx { 
+  height: clamp(4.25rem, 6.8vw, 5.71875rem); 
+}
+
+/* ========================================
+   PROJECTS SECTION
+   ======================================== */
 
 .card {
   background: rgba(18, 20, 27, .85);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: calc(var(--space-sm) * 1.6875); /* ~27px */
+  padding: calc(var(--space-sm) * 1.6875);
   box-shadow: 0 10px 30px rgba(0,0,0,.25);
   opacity: 0;
   transform: translateY(calc(var(--space-xs) * 2));
@@ -326,17 +341,6 @@ main.wrap { margin-top: var(--content-top-gap); }
   animation-delay: var(--delay, 0s);
 }
 
-.project {
-  /* default project grid: media column + content column */
-  display: grid;
-  grid-template-columns: 30rem 1fr; /* ~480px */
-  gap: calc(var(--space-lg) * 1.25); /* ~42px */
-  margin: 0;
-  overflow: hidden;
-  align-items: stretch;
-}
-
-/* Grid layout for multiple project tiles: single column so each card spans full width */
 .projects-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -344,7 +348,6 @@ main.wrap { margin-top: var(--content-top-gap); }
   margin: calc(var(--space-md) * 1.5) 0;
 }
 
-/* Each project card uses the 2-col layout and gets inner padding so the .card appearance remains */
 .projects-grid .project {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -354,7 +357,7 @@ main.wrap { margin-top: var(--content-top-gap); }
   border-radius: calc(var(--radius) * 1.2);
 }
 
-/* Alternate layout: even cards have media on the right */
+/* Alternating media/text layout */
 .projects-grid .project:nth-child(even) {
   direction: rtl;
 }
@@ -363,7 +366,6 @@ main.wrap { margin-top: var(--content-top-gap); }
   direction: ltr;
 }
 
-/* Right-align text content in even cards (where media is on the right) */
 .projects-grid .project:nth-child(even) .meta {
   text-align: right;
 }
@@ -372,13 +374,14 @@ main.wrap { margin-top: var(--content-top-gap); }
   justify-content: flex-end;
 }
 
-/* Left media column - center content */
+/* Media column */
 .projects-grid .media {
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   border-radius: calc(var(--radius) * 1.2);
+  padding: 0;
 }
 
 .projects-grid .media img {
@@ -388,7 +391,6 @@ main.wrap { margin-top: var(--content-top-gap); }
   border-radius: calc(var(--radius) * 1.2);
 }
 
-/* Videos should maintain aspect ratio and not crop */
 .projects-grid .media video {
   width: 100%;
   height: auto;
@@ -396,31 +398,13 @@ main.wrap { margin-top: var(--content-top-gap); }
   border-radius: calc(var(--radius) * 1.2);
 }
 
-.project h3 {
-  margin: calc(var(--space-xs) * 1.5) 0;
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  font-weight: 500;
-}
-
-.project p {
-  margin: 0;
-  color: var(--muted);
-  font-size: clamp(1.125rem, 2vw, 2rem);
-}
-
-.project p a {
-  font-weight: 500;
-  text-decoration: underline;
-}
-
-/* Individual media customization */
+/* Individual project media sizing */
 #familiars-media {
   aspect-ratio: 16 / 9;
   width: 100%;
   justify-self: center;
 }
 
-/* Video containers with native aspect ratios */
 #breakroom-media {
   aspect-ratio: 16 / 9;
   width: 80%;
@@ -445,9 +429,8 @@ main.wrap { margin-top: var(--content-top-gap); }
   justify-self: center;
 }
 
-/* Left media column sizing */
 .projects-grid .mediaPlaceholder {
-  height: 18.75rem; /* ~300px */
+  height: 18.75rem;
   border-radius: calc(var(--radius) * 1.2);
   border: 1px dashed var(--border);
   display: grid;
@@ -455,113 +438,44 @@ main.wrap { margin-top: var(--content-top-gap); }
   color: var(--muted);
 }
 
-/* Meta column layout: stack title + text, push chips to bottom */
+/* Text column */
 .projects-grid .meta {
-  padding: 0.5625rem;
+  padding: 0 clamp(1rem, 2.5vw, 2rem);
   display: flex;
   flex-direction: column;
 }
 
-/* Apply padding only to the text/meta column of project cards
-   and keep media column padding-free so media can span edge-to-edge. */
-.projects-grid .project .meta {
-  padding: 0 clamp(1rem, 2.5vw, 2rem);
-}
-.projects-grid .project .media {
-  padding: 0;
+.project h3 {
+  margin: calc(var(--space-xs) * 1.5) 0;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 500;
 }
 
-/* Anchor chips to the bottom of the card */
-.projects-grid .meta .chips {
-  margin-top: auto;
-}
-
-/* Make chips inside project meta smaller and tighter on small screens */
-.projects-grid .meta .chips {
-  gap: clamp(0.3rem, 1vw, 0.85rem);
-}
-.projects-grid .meta .chip {
-  font-size: clamp(0.75rem, 1.25vw, 1rem);
-  padding: clamp(0.2rem, 0.8vw, 0.45rem) clamp(0.35rem, 1.1vw, 0.65rem);
-}
-
-/* Responsive: stack media on top for narrow viewports */
-@media (max-width: 980px) {
-  .projects-grid .project {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-  .projects-grid .mediaPlaceholder { height: 13.75rem; }
-}
-
-@media (max-width: 980px) {
-  /* keep single column across breakpoints */
-  .projects-grid { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 620px) {
-  .professional-logo { width: 5.25rem; height: 5.25rem; margin: 1.3125rem auto 0 auto; flex: 0 0 auto; }
-  .card.professional .professional-meta { padding: var(--professional-meta-padding-mobile); }
-}
-
-/* Give the Writing section more breathing room from the previous section */
-.writing-section {
-  margin-top: 4.5rem; /* increase gap above the "Writing, Talks, and Media" heading */
-}
-
-@media (max-width: 600px) {
-  .writing-section { margin-top: 28px; }
-}
-
-/* Give the Professional Experience section more breathing room from the previous section */
-.professional-section {
-  margin-top: 4.5rem; /* matches writing-section spacing */
-}
-
-@media (max-width: 600px) {
-  .professional-section { margin-top: 28px; }
-}
-
-/* Reduce vertical spacing inside the brands card */
-.card.brands {
-  /* keep a consistent gap from viewport edges on narrow screens */
-  --edge-gap: 7.5rem; /* change this value to increase/decrease the side gap */
-  padding-top: 0;
-  padding-bottom: 0.1875rem;
-  margin: 1.125rem auto 1.875rem; /* increased bottom margin to separate from next section */
-  box-sizing: border-box;
-  /* on small viewports this leaves `--edge-gap` on each side; on larger
-     viewports the width caps at `max-width` */
-  width: calc(100% - (var(--edge-gap) * 1.15));
-  max-width: 65.625rem; /* ~1050px */
-  /* Don't shrink below a usable size */
-  min-width: 18rem; /* ~390px */
-  min-height: 8.25rem; /* ~132px */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Allow horizontal scrolling if viewport is narrower than min-width */
-  overflow-x: auto;
-}
-
-.mediaPlaceholder {
-  height: 15rem;
-  border-radius: calc(var(--radius) * 1.2);
-  border: 1px dashed var(--border);
-  display: grid;
-  place-items: center;
+.project p {
+  margin: 0;
   color: var(--muted);
+  font-size: clamp(1.125rem, 2vw, 2rem);
 }
 
+.project p a {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+/* Chips/tags */
 .chips {
   display: flex;
   gap: var(--space-sm);
   flex-wrap: wrap;
   margin-bottom: var(--space-sm);
+  margin-top: auto;
+}
+
+.projects-grid .meta .chips {
+  gap: clamp(0.3rem, 1vw, 0.85rem);
 }
 
 .chip {
-  /* Chip text: min 11px, max 12px */
   font-size: clamp(calc(var(--type-p2) - .5rem), 1.4vw, var(--type-p1));
   padding: calc(var(--space-xs) * 1.5) calc(var(--space-sm) * 1.5);
   border-radius: 999px;
@@ -569,6 +483,149 @@ main.wrap { margin-top: var(--content-top-gap); }
   color: var(--muted);
   background: rgba(0,0,0,.2);
 }
+
+.projects-grid .meta .chip {
+  font-size: clamp(0.75rem, 1.25vw, 1rem);
+  padding: clamp(0.2rem, 0.8vw, 0.45rem) clamp(0.35rem, 1.1vw, 0.65rem);
+}
+
+/* ========================================
+   WRITING SECTION
+   ======================================== */
+
+.writing-section {
+  margin-top: 4.5rem;
+}
+
+.writing-section .media img {
+  width: auto;
+  height: 20rem;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.writing-section .media img[src$="ARInsider-Logo.webp"] {
+  border-radius: 0;
+}
+
+/* ========================================
+   PROFESSIONAL EXPERIENCE SECTION
+   ======================================== */
+
+.professional-section { 
+  text-align: center; 
+  margin: 4.5rem 0 calc(var(--space-xl) * 1);
+}
+
+.professional-section .taglines { 
+  margin-bottom: calc(var(--space-xs) * 1.5); 
+}
+
+.professional-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  margin: 1.125rem 0 2.25rem;
+}
+
+.card.professional {
+  width: 100%;
+  max-width: 100%;
+  background: var(--professional-bg);
+  border: 1px solid var(--professional-border);
+  border-radius: var(--professional-radius);
+  padding: 0;
+  box-shadow: var(--professional-box-shadow);
+  opacity: 0;
+  transform: translateY(0.75rem);
+  will-change: transform, opacity;
+  animation: fadeUp .6s ease forwards;
+  animation-delay: var(--delay, 0s);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-lg);
+}
+
+.card.professional .professional-meta {
+  text-align: left;
+  padding: .5rem;
+}
+
+.card.professional h3 {
+  margin: 0;
+  font-size: var(--professional-h3-size);
+}
+
+.card.professional p { 
+  margin: 0; 
+  color: var(--muted); 
+  font-size: var(--professional-p-size); 
+}
+
+.card.professional .professional-bullets {
+  margin: calc(var(--space-xs) * 1.5) 0 0 0;
+  padding-left: 1.25rem;
+  color: var(--text);
+}
+
+.card.professional .professional-bullets li {
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+  font-size: var(--professional-body-size);
+  color: var(--professional-bullet-color);
+}
+
+.card.professional .professional-bullets li::marker {
+  color: var(--text);
+}
+
+.card.professional .professional-bullets .subtext {
+  margin: 0.375rem 0 0 0;
+  color: var(--muted);
+  font-size: var(--professional-body-size);
+  margin-left: 0.125rem;
+}
+
+/* Unity logo for game projects */
+.card.professional .professional-bullets li.with-logo {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.6875rem;
+  list-style: none;
+  padding-left: 0;
+}
+
+.card.professional .professional-bullets li.with-logo .game-text { 
+  flex: 1; 
+  font-size: var(--professional-body-size); 
+}
+
+.card.professional .unity-logo {
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: contain;
+  margin-top: 0;
+  flex: 0 0 4.5rem;
+  background: rgba(255,255,255,0);
+  padding: 0.5625rem;
+  border-radius: calc(var(--radius) * 0.5);
+  display: inline-block;
+  box-shadow: none;
+  filter: none;
+}
+
+.professional-logo {
+  width: clamp(5rem, 8vw, 6rem);
+  height: clamp(5rem, 8vw, 6rem);
+  object-fit: contain;
+  margin: var(--professional-logo-margin);
+  flex: 0 0 clamp(5rem, 8vw, 8rem);
+}
+
+/* ========================================
+   SKILLS SECTION
+   ======================================== */
 
 .skills {
   list-style: none;
@@ -580,20 +637,22 @@ main.wrap { margin-top: var(--content-top-gap); }
 }
 
 .skills li {
-  padding: 0.45rem 1.5rem; /* slightly smaller chips */
+  padding: 0.45rem 1.5rem;
   border-radius: 999px;
   border: 1px solid var(--border);
   background: rgba(0,0,0,.18);
   font-size: clamp(0.75rem, 1.2vw, 1.4rem);
 }
 
-/* Stack skills sections vertically so each category appears one after another */
 .skills-grid {
   display: block;
   margin: 1.125rem 0 2.25rem 0;
 }
 
-.skills-column { min-width: 0; margin-bottom: 1.6875rem; }
+.skills-column { 
+  min-width: 0; 
+  margin-bottom: 1.6875rem; 
+}
 
 .skill-heading {
   margin: 0 0 0.625rem 0;
@@ -602,168 +661,142 @@ main.wrap { margin-top: var(--content-top-gap); }
   font-size: clamp(1.3125rem, 1.6vw, var(--type-h3));
 }
 
+/* ========================================
+   FOOTER
+   ======================================== */
+
 .footer {
   padding-bottom: 4rem;
   color: var(--muted);
 }
 
-@media (max-width: 980px) {
-  .project { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 760px) {
-  .project { grid-template-columns: 1fr; }
-}
-
-/* Very narrow screens: stack vertically to avoid cramped layout */
-@media (max-width: 420px) {
-  .project { grid-template-columns: 1fr; }
-}
+/* ========================================
+   ANIMATIONS
+   ======================================== */
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(0.75rem); }
-  to   { opacity: 1; transform: translateY(0); }
+  from { 
+    opacity: 0; 
+    transform: translateY(0.75rem); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
 }
 
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   ======================================== */
 
-/* Professional card variables (local to this section) */
-:root {
-  --professional-meta-padding: 0;
-  --professional-meta-padding-mobile: 0.875rem;
-  --professional-h3-size: clamp(1.6rem, 3vw, 2.4rem);
-  --professional-p-size: clamp(1.125rem, 2vw, 2rem);
-  /* Single control for body text inside professional bullets, game text, and subtext */
-  --professional-body-size: clamp(1rem, 2vw, 1.4rem);
-  --professional-logo-margin: 2.34375rem 0 0 1.6875rem;
-  /* Slightly less-muted color used specifically for professional bullet text */
-  --professional-bullet-color: #c8ced6;
-}
-
-/* Professional Experience section: distinct look from project cards */
-.professional-section { text-align: center; margin: calc(var(--space-lg) * 1) 0 calc(var(--space-xl) * 1); }
-.professional-section .taglines { margin-bottom: calc(var(--space-xs) * 1.5); }
-.professional-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  align-items: center; /* centers the cards horizontally within the wrap */
-  margin: 1.125rem 0 2.25rem;
-}
-.card.professional {
-  width: 100%;
-  max-width: 100%;
-  /* keep distinct professional background but adopt project-style card formatting */
-  background: var(--professional-bg);
-  border: 1px solid var(--professional-border);
-  border-radius: var(--professional-radius);
-  padding: 0; /* meta controls inner padding */
-  box-shadow: var(--professional-box-shadow);
-  opacity: 0;
-  transform: translateY(0.75rem);
-  will-change: transform, opacity;
-  animation: fadeUp .6s ease forwards;
-  animation-delay: var(--delay, 0s);
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-lg);
-}
-.card.professional .professional-meta {
-  text-align: left;
-  padding: .5rem;
-}
-.card.professional h3 {
-  margin: 0;
-  font-size: var(--professional-h3-size);
-}
-.card.professional p { 
-  margin: 0; 
-  color: var(--muted); 
-  font-size: var(--professional-p-size); 
-}
-
-/* Bulleted list in professional cards: match text color and marker color */
-.card.professional .professional-bullets {
-  margin: calc(var(--space-xs) * 1.5) 0 0 0;
-  padding-left: 1.25rem;
-  color: var(--text);
-}
-.card.professional .professional-bullets li {
-  margin-bottom: 0.75rem;
-  line-height: 1.2;
-  font-size: var(--professional-body-size);
-  color: var(--professional-bullet-color);
-}
-.card.professional .professional-bullets li::marker {
-  color: var(--text);
-}
-/* Subtext under list items (e.g., game descriptions) */
-.card.professional .professional-bullets .subtext {
-  margin: 0.375rem 0 0 0;
-  color: var(--muted);
-  font-size: var(--professional-body-size);
-  margin-left: 0.125rem;
-}
-
-/* Items which include the Unity logo to the left */
-.card.professional .professional-bullets li.with-logo {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.6875rem;
-  list-style: none; /* hide default marker for these rows */
-  padding-left: 0;
-}
-.card.professional .professional-bullets li.with-logo .game-text { flex: 1; font-size: var(--professional-body-size); }
-.card.professional .unity-logo {
-  width: 4.5rem;
-  height: 4.5rem;
-  object-fit: contain;
-  margin-top: 0;
-  flex: 0 0 4.5rem;
-  background: rgba(255,255,255,0); /* semi-transparent white box */
-  padding: 0.5625rem;
-  border-radius: calc(var(--radius) * 0.5);
-  display: inline-block;
-  box-shadow: none; /* remove drop shadow */
-  filter: none; /* remove any filters */
-}
-
-@media (max-width: 620px) {
-  .card.professional .unity-logo { width: 3.1875rem; height: 3.1875rem; flex: 0 0 3.1875rem; padding: 0.5625rem; }
-  .card.professional .professional-bullets li.with-logo { gap: 1.125rem; }
-}
-
-.professional-logo {
-  width: clamp(5rem, 8vw, 8rem);
-  height: clamp(5rem, 8vw, 8rem);
-  object-fit: contain;
-  margin: var(--professional-logo-margin);
-  flex: 0 0 clamp(5rem, 8vw, 8rem);
-}
-
-@media (max-width: 620px) {
-  .card.professional { flex-direction: column; align-items: stretch; }
-  .professional-logo { width: clamp(4.5rem, 12vw, 6rem); height: clamp(4.5rem, 12vw, 6rem); margin: 1.3125rem auto 0 auto; flex: 0 0 auto; }
-  .card.professional .professional-meta { padding: var(--professional-meta-padding-mobile); }
-}
-
+/* Desktop large (900px+) */
 @media (min-width: 900px) {
-  /* make the professional cards a bit narrower than the wrap on very wide screens */
-  .card.professional { max-width: 84.375rem; }
+  .card.professional { 
+    max-width: 84.375rem; 
+  }
 }
 
+/* Tablet & smaller (900px) */
 @media (max-width: 900px) {
-  body { background-attachment: scroll; }
+  body { 
+    background-attachment: scroll; 
+  }
+  
+  .showreel {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 1.125rem;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .links {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: clamp(0.75rem, 1.6vw, 1.3125rem);
+    justify-content: end;
+    align-items: center;
+  }
+  
+  .links > .resume-btn { 
+    grid-column: 1 / -1; 
+    justify-self: center; 
+  }
 }
 
-/* Constrain media images used in the Writing section so they don't appear too large */
-.writing-section .media img {
-  width: auto;
-  height: 20rem; /* adjust this value if you want a larger/smaller image */
-  max-width: 100%;
-  object-fit: contain;
+/* Medium (980px) */
+@media (max-width: 980px) {
+  .projects-grid .project {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .projects-grid .mediaPlaceholder { 
+    height: 13.75rem; 
+  }
 }
 
-/* Don't round the AR Insider logo's corners */
-.writing-section .media img[src$="ARInsider-Logo.webp"] {
-  border-radius: 0;
+/* Small (620px) */
+@media (max-width: 620px) {
+  .card.professional { 
+    flex-direction: column; 
+    align-items: stretch; 
+  }
+  
+  .professional-logo { 
+    width: clamp(4.5rem, 12vw, 6rem); 
+    height: clamp(4.5rem, 12vw, 6rem); 
+    margin: 1.3125rem auto 0 auto; 
+    flex: 0 0 auto; 
+  }
+  
+  .card.professional .professional-meta { 
+    padding: var(--professional-meta-padding-mobile); 
+  }
+  
+  .card.professional .unity-logo { 
+    width: 3.1875rem; 
+    height: 3.1875rem; 
+    flex: 0 0 3.1875rem; 
+    padding: 0.5625rem; 
+  }
+  
+  .card.professional .professional-bullets li.with-logo { 
+    gap: 1.125rem; 
+  }
+}
+
+/* Small (600px) */
+@media (max-width: 600px) {
+  .writing-section { 
+    margin-top: 28px; 
+  }
+  
+  .professional-section { 
+    margin-top: 28px; 
+  }
+}
+
+/* Mobile (560px) */
+@media (max-width: 560px) {
+  .resume-btn { 
+    padding: clamp(0.6rem, 2.5vw, 0.9375rem) clamp(0.75rem, 6vw, 1.3125rem); 
+    font-size: clamp(0.875rem, 1.6vw, 1rem); 
+  }
+  
+  .links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .links > a { 
+    justify-self: center; 
+  }
+  
+  .links > .resume-btn { 
+    grid-column: 1 / -1; 
+    justify-self: center; 
+  }
 }
