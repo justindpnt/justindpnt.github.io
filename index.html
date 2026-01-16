@@ -39,7 +39,7 @@
   <main class="wrap">
 
     <section class="showreel">
-      <video class="showreel-gif" loop muted playsinline preload="none" aria-label="Showreel">
+      <video class="showreel-gif" loop muted playsinline preload="none" poster="assets/project-stills/Showreel.jpg" aria-label="Showreel">
         <source src="assets/Project-Videos/Highlight_Reel.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -73,7 +73,7 @@
       <div class="projects-grid">
         <article class="card project">
           <div class="media" id="familiars-media">
-            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="Familiars Demo">
+            <video class="showreel-gif" loop muted playsinline preload="none" poster="assets/project-stills/Familiars.jpg" aria-label="Familiars Demo">
               <source src="assets/Project-Videos/Familiars.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -93,7 +93,7 @@
 
         <article class="card project">
           <div class="media" id="breakroom-media">
-            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="Break Room Demo">
+            <video class="showreel-gif" loop muted playsinline preload="none" poster="assets/project-stills/Breakroom.jpg" aria-label="Break Room Demo">
               <source src="assets/Project-Videos/Breakroom.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -115,7 +115,7 @@
 
         <article class="card project">
           <div class="media" id="pokemon-media">
-            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="AR Pokemon Cards Demo">
+            <video class="showreel-gif" loop muted playsinline preload="none" poster="assets/project-stills/Pokemon.jpg" aria-label="AR Pokemon Cards Demo">
               <source src="assets/Project-Videos/Pokemon.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -136,7 +136,7 @@
 
         <article class="card project">
           <div class="media" id="surface-changer-media">
-            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="Surface Changer Demo">
+            <video class="showreel-gif" loop muted playsinline preload="none" poster="assets/project-stills/Surface_Changer.jpg" aria-label="Surface Changer Demo">
               <source src="assets/Project-Videos/Surface Changer.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -145,7 +145,7 @@
           <div class="meta">
             <h3>Surface Changer</h3>
             <p>Quest 3 app (unpublished) where you can overlay a virtual texture on any physical surface.
-              <br><br> Undertook to experiment with Meta Hand Tracking APIs and wri7te URP shaders.
+              <br><br> Undertook to experiment with Meta Hand Tracking APIs and write URP shaders.
             </p>
             <div class="chips">
               <span class="chip">Unity</span>
@@ -158,7 +158,7 @@
 
         <article class="card project">
           <div class="media" id="headsets-media">
-            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="3D Printed AR Headsets Demo">
+            <video class="showreel-gif" loop muted playsinline preload="none" poster="assets/project-stills/Headset.jpg" aria-label="3D Printed AR Headsets Demo">
               <source src="assets/Project-Videos/Headset.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -201,8 +201,10 @@
             <div class="mediaPlaceholder">Media</div>
           </div>
           <div class="meta">
-            <h3>Article Title Placeholder</h3>
-            <p>Short description coming soon.</p>
+            <h3>Over 500,000 views on social media!</h3>
+            <p>I make content on Youtube and Tiktok. 
+              Most of my cotent focuses on AR/VR devlogs.
+            </p>
             <div class="chips">
               <span class="chip">Article</span>
               <span class="chip">Draft</span>
@@ -215,8 +217,13 @@
             <div class="mediaPlaceholder">Media</div>
           </div>
           <div class="meta">
-            <h3>Talk Title Placeholder</h3>
-            <p>Short description coming soon.</p>
+            <h3>Four Public Developer Talks</h3>
+            <p>I like to present and share my work with developer audiences. I've presented for the following organizations:</p>
+            <ul>
+              <li>IGDA Houston</li>
+              <li>AR/VR Houston</li>
+              <li>Austin Unity User Group</li>
+            </ul>
             <div class="chips">
               <span class="chip">Talk</span>
               <span class="chip">Video</span>
@@ -317,8 +324,8 @@
       </div>
     </section>
 
-    <section>
-      <h2 id="skills-heading">Skills</h2>
+    <section class="professional-section">
+      <p class="taglines">Skills</p>
       <ul class="skills skills-full">
         <li>C#</li>
         <li>Python</li>
@@ -346,11 +353,16 @@
       </ul>
     </section> 
 
-    <section>
-      <h2 id="about-heading">About</h2>
+    <section class="professional-section">
+      <p class="taglines">In Closing...</p>
       <div class="card">
         <p id="about-text">
-          Hi I'm Justin :)
+          Thank you for looking through my portfolio! I put a lot of care in designing how people experience my work, so I hope you enjoyed the showcase.
+          <br><br>
+          If you want to know a bit more about me outside of my work, you'll usually find me exploring different creative avenues. Sometimes this looks like taking comedy improv classes, and sometimes it looks like immersing myself reading fantasy stories and playing Dungeons and Dragons. 
+          <br><br>
+          I really do care a lot about XR. I think this tech will transform the way we as humans interact with the world around us, and I want to help build that future.
+          <br><br> Please feel free to reach out to you want to connect!
         </p>
       </div>
     </section>
@@ -375,7 +387,7 @@
       });
     })();
 
-    // Play videos only when scrolled into view
+    // Play videos only when scrolled into view, with still image fallback
     const videos = document.querySelectorAll('video');
 
     const observer = new IntersectionObserver(
@@ -384,14 +396,20 @@
           const video = entry.target;
 
           if (entry.isIntersecting) {
-            if (video.readyState === 0) video.load();
+            // Load and play video when in viewport
+            if (video.readyState === 0) {
+              video.load();
+            }
             video.play().catch(() => {});
           } else {
+            // Pause and optionally reset to poster when out of viewport
             video.pause();
+            // Uncomment the next line to show poster when video leaves viewport:
+            // video.currentTime = 0;
           }
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.7 }
     );
 
     videos.forEach(video => observer.observe(video));
