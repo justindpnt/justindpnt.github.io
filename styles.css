@@ -393,8 +393,20 @@ main.wrap {
   border-radius: calc(var(--radius) * 1.2);
 }
 
+#familiars-media {
+  aspect-ratio: 6 / 11;
+  justify-self: center;
+}
 
+#breakroom-media{
+  aspect-ratio: 1 / 1;
+  justify-self: center;
+}
 
+#surface-changer-media{
+   aspect-ratio: 1 / 1;
+  justify-self: center; 
+}
 
 .projects-grid .mediaPlaceholder {
   height: 18.75rem;
