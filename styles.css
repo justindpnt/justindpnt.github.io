@@ -392,6 +392,21 @@ main.wrap {
   border-radius: calc(var(--radius) * 1.2);
 }
 
+#familiars-media video {
+  min-height: clamp(30rem, 40vw, 60rem);
+  height: auto;
+}
+
+#breakroom-media video {
+  min-height: clamp(30rem, 30vw, 60rem);
+  height: auto;
+}
+
+#surface-changer-media video {
+  min-height: clamp(30rem, 30vw, 60rem);
+  height: auto;
+}
+
 .projects-grid .mediaPlaceholder {
   height: 18.75rem;
   border-radius: calc(var(--radius) * 1.2);
