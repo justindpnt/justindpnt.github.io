@@ -1,6 +1,6 @@
 /* ========================================
    GLOBAL VARIABLES
-   ========================================  */ 
+   ========================================  s*/ 
 
 :root {
   /* Color palette */
@@ -372,6 +372,12 @@ main.wrap {
 
 .projects-grid .project:nth-child(even) .chips {
   justify-content: flex-end;
+}
+
+.projects-grid .project:nth-child(even) ul {
+  padding-left: 0;
+  padding-right: 1.5rem;
+  list-style-type: none;
 }
 
 
