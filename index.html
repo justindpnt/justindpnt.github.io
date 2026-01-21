@@ -408,10 +408,10 @@
   </script>
 
   <script>
-    // Stagger fade-in for all .card elements in DOM order (top -> bottom)
+    // Stagger fade-in for all elements in DOM order (top -> bottom)
     (function(){
-      const cards = Array.from(document.querySelectorAll('.card'));
-      cards.forEach((el, i) => {
+      const fadeElements = Array.from(document.querySelectorAll('.card, .greeting, .showreel-text, .taglines'));
+      fadeElements.forEach((el, i) => {
         el.style.setProperty('--delay', `${i * 0.12}s`);
       });
     })();
