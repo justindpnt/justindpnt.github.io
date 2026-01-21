@@ -51,10 +51,13 @@
   <main class="wrap">
 
     <section class="showreel">
-      <video class="showreel-gif" loop muted playsinline preload="none" poster="assets/project-stills/Showreel.jpg" aria-label="Showreel">
-        <source src="assets/Project-Videos/Highlight_Reel.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div class="showreel-media js-media">
+        <img class="media-poster" src="assets/project-stills/Showreel.jpg" alt="" aria-hidden="true">
+        <video class="showreel-gif" loop muted playsinline preload="none" aria-label="Showreel">
+          <source src="assets/Project-Videos/Highlight_Reel.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
       <div class="tagline">
         <h1 class="greeting">Hi, I'm Justin!</h1>
         <p class="showreel-text">
@@ -84,8 +87,9 @@
       <p class="taglines">Shipped Work</p>
       <div class="projects-grid">
         <article class="card project">
-          <div class="media" id="familiars-media">
-            <video class="showreel-gif" loop muted playsinline preload="none" poster="assets/project-stills/Familiars.jpg" aria-label="Familiars Demo">
+          <div class="media js-media" id="familiars-media">
+            <img class="media-poster" src="assets/project-stills/Familiars.jpg" alt="" aria-hidden="true" loading="lazy">
+            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="Familiars Demo">
               <source src="assets/Project-Videos/Familiars.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -104,8 +108,9 @@
         </article>
 
         <article class="card project">
-          <div class="media" id="breakroom-media">
-            <video class="showreel-gif" loop muted playsinline preload="none" poster="assets/project-stills/Breakroom.jpg" aria-label="Break Room Demo">
+          <div class="media js-media" id="breakroom-media">
+            <img class="media-poster" src="assets/project-stills/Breakroom.jpg" alt="" aria-hidden="true" loading="lazy">
+            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="Break Room Demo">
               <source src="assets/Project-Videos/Breakroom.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -126,8 +131,9 @@
         </article>
 
         <article class="card project">
-          <div class="media" id="pokemon-media">
-            <video class="showreel-gif" loop muted playsinline preload="none" poster="assets/project-stills/Pokemon.jpg" aria-label="AR Pokemon Cards Demo">
+          <div class="media js-media" id="pokemon-media">
+            <img class="media-poster" src="assets/project-stills/Pokemon.jpg" alt="" aria-hidden="true" loading="lazy">
+            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="AR Pokemon Cards Demo">
               <source src="assets/Project-Videos/Pokemon.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -147,8 +153,9 @@
         </article>
 
         <article class="card project">
-          <div class="media" id="surface-changer-media">
-            <video class="showreel-gif" loop muted playsinline preload="none" poster="assets/project-stills/Surface_Changer.jpg" aria-label="Surface Changer Demo">
+          <div class="media js-media" id="surface-changer-media">
+            <img class="media-poster" src="assets/project-stills/Surface_Changer.jpg" alt="" aria-hidden="true" loading="lazy">
+            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="Surface Changer Demo">
               <source src="assets/Project-Videos/Surface Changer.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -169,8 +176,9 @@
         </article>
 
         <article class="card project">
-          <div class="media" id="headsets-media">
-            <video class="showreel-gif" loop muted playsinline preload="none" poster="assets/project-stills/Headset.jpg" aria-label="3D Printed AR Headsets Demo">
+          <div class="media js-media" id="headsets-media">
+            <img class="media-poster" src="assets/project-stills/Headset.jpg" alt="" aria-hidden="true" loading="lazy">
+            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="3D Printed AR Headsets Demo">
               <source src="assets/Project-Videos/Headset.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -190,8 +198,9 @@
         </article>
 
         <article class="card project">
-          <div class="media" id="smaller-games-media">
-            <video class="showreel-gif" loop muted playsinline preload="none" poster="assets/project-stills/Small_Projects_Reel.jpg" aria-label="Small Projects Reel">
+          <div class="media js-media" id="smaller-games-media">
+            <img class="media-poster" src="assets/project-stills/Small_Projects_Reel.jpg" alt="" aria-hidden="true" loading="lazy">
+            <video class="showreel-gif" loop muted playsinline preload="none" aria-label="Small Projects Reel">
               <source src="assets/Project-Videos/Small_Projects_Reel.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
@@ -407,32 +416,50 @@
       });
     })();
 
-    // Play videos only when scrolled into view, with still image fallback
-    const videos = document.querySelectorAll('video');
+    // Enhanced video loading with smooth poster-to-video transition
+    const mediaEls = document.querySelectorAll('.js-media');
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
-          const video = entry.target;
+          const mediaEl = entry.target;
+          const video = mediaEl.querySelector('video');
+          const poster = mediaEl.querySelector('.media-poster');
+          if (!video) return;
 
           if (entry.isIntersecting) {
-            // Load and play video when in viewport
+            // Start loading if not already
             if (video.readyState === 0) {
               video.load();
             }
-            video.play().catch(() => {});
+
+            // Wait for first frame to be ready before fading poster
+            if (video.readyState >= 2) {
+              // Video is ready, fade poster and play
+              poster.style.opacity = '0';
+              video.play().catch(() => {});
+            } else {
+              // Wait for video to be ready
+              video.addEventListener('loadeddata', () => {
+                poster.style.opacity = '0';
+                if (entry.isIntersecting) {
+                  video.play().catch(() => {});
+                }
+              }, { once: true });
+            }
           } else {
-            // Pause and optionally reset to poster when out of viewport
+            // Pause when out of view
             video.pause();
-            // Uncomment the next line to show poster when video leaves viewport:
-            // video.currentTime = 0;
           }
         });
       },
-      { threshold: 0.7 }
+      { 
+        threshold: 0.9,
+        rootMargin: '100px' // Start loading 100px before entering viewport
+      }
     );
 
-    videos.forEach(video => observer.observe(video));
+    mediaEls.forEach(el => observer.observe(el));
   </script>
 
 </body>
