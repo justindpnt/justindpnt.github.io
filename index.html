@@ -486,6 +486,11 @@
     if (window.location.hash === '#ARHeadset' || window.location.href.includes('projects#ARHeadset')) {
       window.location.href = '/capstone';
     }
+    
+    // Redirect #games to itch.io
+    if (window.location.hash === '#games' || window.location.href.includes('home#games')) {
+      window.location.href = 'https://justindpnt.itch.io/';
+    }
   </script>
 
 </body>
