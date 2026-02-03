@@ -488,7 +488,10 @@
     }
     
     // Redirect #games to itch.io
-    if (window.location.hash === '#games' || window.location.href.includes('home#games')) {
+    if (
+      window.location.hash === '#games' ||
+      window.location.href.includes('home#games')
+    ) {
       window.location.href = 'https://justindpnt.itch.io/';
     }
   </script>
