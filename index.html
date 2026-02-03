@@ -481,6 +481,13 @@
     mediaEls.forEach(el => observer.observe(el));
   </script>
 
+  <script>
+    // Redirect #ARHeadset to /capstone
+    if (window.location.hash === '#ARHeadset' || window.location.href.includes('projects#ARHeadset')) {
+      window.location.href = '/capstone';
+    }
+  </script>
+
 </body>
 </html>
     
